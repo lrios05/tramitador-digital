@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './posts/posts.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AppMaterialModule } from './../core/services/app-material.module'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppMaterialModule,
+    FlexLayoutModule
   ]
 })
 export class ModulesModule { }

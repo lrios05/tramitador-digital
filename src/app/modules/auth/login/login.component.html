@@ -1,0 +1,34 @@
+<div fxLayoutAlign="center center" fxFlexFill class="login-card">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary" fxLayout="column">
+            <span class="material-icons md-48">account_circle</span>
+            Inicio de sesión
+        </mat-toolbar>
+        <div>
+            <form fxLayoutAlign="stretch" fxLayout="column">
+                <mat-form-field appearance="standard">
+                    <mat-label>Ingrese su correo</mat-label>
+                    <input matInput>
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Ingrese su contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div fxLayoutAlign="end">
+                    <span><a href="#">Olvidaste tu contraseña?</a></span>
+                </div>
+                <button type="submit" mat-raised-button color="primary">Iniciar sesión</button>
+
+            </form>
+            <div class="new-account">
+                <mat-divider></mat-divider>
+                <button type="button" mat-stroked-button color="primary">Crear cuenta nueva</button>
+            </div>
+        </div>
+    </mat-card>
+</div>
