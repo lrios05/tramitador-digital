@@ -8,6 +8,9 @@ const routes: Routes = [
   },
   {
     path: '', loadChildren: () => import("./layout/loginview/loginview.module").then (m => m.LoginviewModule)
+  },
+  {
+    path: '', loadChildren: () => import("./layout/customerview/customerview.module").then (m => m.CustomerviewModule)
   }
 ];
 

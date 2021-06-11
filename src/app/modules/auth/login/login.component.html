@@ -1,8 +1,9 @@
-<div fxLayoutAlign="center center" fxFlexFill class="login-card">
+<div fxLayoutAlign="center center" fxFlexFill>
     <mat-card fxFlex="25">
-        <mat-toolbar color="primary" fxLayout="column">
-            <span class="material-icons md-48">account_circle</span>
-            Inicio de sesión
+        <mat-toolbar color="primary" fxLayout="column" class="login-card">
+            <mat-icon>account_circle</mat-icon>
+            <span>Inicio de sesión</span>
+            
         </mat-toolbar>
         <div>
             <form fxLayoutAlign="stretch" fxLayout="column">
@@ -22,12 +23,14 @@
                 <div fxLayoutAlign="end">
                     <span><a href="#">Olvidaste tu contraseña?</a></span>
                 </div>
-                <button type="submit" mat-raised-button color="primary">Iniciar sesión</button>
-
+                <div class="button-pad">
+                    <button type="submit" mat-raised-button color="primary">Iniciar sesión</button>                        
+                </div>
             </form>
-            <div class="new-account">
-                <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            <div class="button-pad">
                 <button type="button" mat-stroked-button color="primary">Crear cuenta nueva</button>
+                <span>Registrate para acceder a los contratos de servicios.</span>
             </div>
         </div>
     </mat-card>
