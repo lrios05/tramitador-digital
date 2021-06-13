@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layout/default/default.module';
-import { LoginviewModule } from './layout/loginview/loginview.module';
+import { LoginViewModule } from './layout/auth-views/login-view/login-view.module';
+import { RegisterViewModule } from './layout/auth-views/register-view/register-view.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoginviewModule } from './layout/loginview/loginview.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
-    LoginviewModule
+    LoginViewModule,
+    RegisterViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

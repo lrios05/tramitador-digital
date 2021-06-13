@@ -1,7 +1,26 @@
-.login-card {
-    padding: 12px 0;
+mat-card {
+    max-width: 400px;
+    margin: 6rem auto;
+    text-align: center;
 }
 
-.button-pad {
-    padding: 15px 0;
+.header {
+    text-align: center;
+}
+
+.full-width {
+    width: 90%;
+}
+
+.button-row {
+    padding-top: 20px;
+    display: block;
+}
+  
+.aLink {
+    text-decoration: none;
+}
+
+.hr-row {
+    padding: 20px 0;
 }

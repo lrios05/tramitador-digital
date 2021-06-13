@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content-body {
+    min-height: 100%;
+    padding: 20px 1rem;
+    background: ghostwhite;
+    display: block;
+}
