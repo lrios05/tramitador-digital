@@ -9,6 +9,10 @@ import { PostsComponent } from './posts/posts.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CustomerComponent } from './customer/customer.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ClientComponent } from './service-transactions/client/client.component';
+import { CompanyComponent } from './service-transactions/company/company.component';
+import { ContractComponent } from './service-transactions/contract/contract.component';
+import { ServiceTransactionsComponent } from './service-transactions/service-transactions.component';
 
 
 @NgModule({
@@ -17,7 +21,11 @@ import { RegisterComponent } from './auth/register/register.component';
     PostsComponent,
     LoginComponent,
     CustomerComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClientComponent,
+    CompanyComponent,
+    ContractComponent,
+    ServiceTransactionsComponent
   ], 
   imports: [
     CommonModule,

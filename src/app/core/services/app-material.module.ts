@@ -9,6 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule} from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -22,7 +27,12 @@ import { MatStepperModule} from '@angular/material/stepper';
     MatIconModule,
     MatToolbarModule,
     MatDividerModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -33,7 +43,12 @@ import { MatStepperModule} from '@angular/material/stepper';
     MatIconModule,
     MatToolbarModule,
     MatDividerModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ]
 })
 

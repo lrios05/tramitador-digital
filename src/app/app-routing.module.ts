@@ -14,7 +14,11 @@ const routes: Routes = [
   },
   {
     path: '', loadChildren: () => import("./layout/auth-views/register-view/register-view.module").then (m => m.RegisterViewModule)
-  }
+  },
+  {
+    path: '', loadChildren: () => import("./layout/service-transactions-views/service-transactions-views.module")
+              .then (m => m.ServiceTransactionsViewsModule)
+  },
 ];
 
 @NgModule({
