@@ -5,14 +5,14 @@
                 <h2>Trámite de contrato de servicios</h2>
             </div>
             <!--div style="margin-bottom:20px">
-          <alert></alert>
-        </div-->
+            <alert></alert>
+            </div-->
             <div class="absolute-center" *ngIf="dataLoading">
                 <mat-spinner [diameter]="80"></mat-spinner>
             </div>
             <div *ngIf="!dataLoading" style="margin-right:10px">
-                <mat-vertical-stepper #stepper>
-                    <!--mat-vertical-stepper #stepper (selectionChange)="onStepChange($event)"-->
+                <!--mat-vertical-stepper #stepper-->
+                <mat-vertical-stepper #stepper (selectionChange)="onStepChange($event)">
                     <mat-step label="Datos del Cliente">
                         <app-client></app-client>
                         <div class="stepper-navigation">
@@ -20,23 +20,33 @@
                         </div>
                     </mat-step>
 
-                    <mat-step label="Datos de la empresa">
+                    <mat-step label="Datos de la Empresa">
                         <app-company style="margin-top: 15px"></app-company>
                         <div class="stepper-navigation">
                             <button mat-button matStepperNext>Next</button>
                         </div>
                     </mat-step>
 
-                    <!--mat-step label="Review & Save">
-              <contact-review-form [contact]="contact" [errorMessages]="errorMessages"></contact-review-form>
-              <div style="margin-top:40px; margin-bottom:20px;margin-left:17px">
-                <button [disabled]="!allFormsValid" *ngIf="!formSubmitted" mat-raised-button color="primary" (click)="saveInfo()">Save Info</button>
-                <mat-spinner *ngIf="formSubmitted" [diameter]="50"></mat-spinner>
-              </div>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-              </div>
-            </mat-step-->
+                    <mat-step label="Datos del Contrato">
+                        <app-contract style="margin-top: 15px"></app-contract>
+                        <div class="stepper-navigation">
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </mat-step>
+
+                    <mat-step label="Firma Digital">
+                        <!--contact-review-form [contact]="contact" [errorMessages]="errorMessages"></contact-review-form-->
+                        <div style="margin-top:40px; margin-bottom:20px;margin-left:17px">
+                            <button [disabled]="!allFormsValid" *ngIf="!formSubmitted" mat-raised-button color="primary"
+                                (click)="saveForm()">
+                                Registrar
+                            </button>
+                            <mat-spinner *ngIf="formSubmitted" [diameter]="50"></mat-spinner>
+                        </div>
+                        <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                        </div>
+                    </mat-step>
                 </mat-vertical-stepper>
             </div>
         </div>

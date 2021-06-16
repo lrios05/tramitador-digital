@@ -1,1 +1,231 @@
-<p>contract works!</p>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="contractInfoGroup">
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>No. Contrato</mat-label>
+                    <input matInput formControlName="cod_contrato" placeholder="Ingrese No. de Contrato" maxlength="15">
+                    <mat-error *ngIf="contractInfoGroup.controls['cod_contrato'].invalid">
+                        Ingrese el No. de Contrato válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Fecha registro</mat-label>
+                    <input matInput formControlName="fecha_registro" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error *ngIf="contractInfoGroup.controls['fecha_registro'].invalid">
+                        Seleccione una fecha de registro válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Tipo de servicio</mat-label>
+                    <mat-select formControlName="tipo_servicio" placeholder="Seleccionar tipo servicio">
+                        <mat-option *ngFor="let type of serviceTypeOptions" [value]="type.value">
+                            {{ type.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['tipo_servicio'].invalid">
+                        Seleccione tipo de servicio
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Servicio</mat-label>
+                    <mat-select formControlName="id_servicio" placeholder="Seleccionar servicio">
+                        <mat-option *ngFor="let service of serviceOptions" [value]="service.value">
+                            {{ service.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['id_servicio'].invalid">
+                        Seleccione el servicio requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Fecha inicio</mat-label>
+                    <input matInput formControlName="fecha_inicio" [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <mat-error *ngIf="contractInfoGroup.controls['fecha_inicio'].invalid">
+                        Seleccione una fecha inicial válida
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Fecha final</mat-label>
+                    <input matInput formControlName="fecha_final" [matDatepicker]="picker3">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                    <mat-error *ngIf="contractInfoGroup.controls['fecha_final'].invalid">
+                        Seleccione una fecha final válida
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>No. Meses</mat-label>
+                    <input matInput formControlName="meses" maxlength="2">
+                    <mat-error *ngIf="contractInfoGroup.controls['meses'].invalid">
+                        Ingrese No. meses válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>No. Años</mat-label>
+                    <input matInput formControlName="anios" maxlength="2">
+                    <mat-error *ngIf="contractInfoGroup.controls['anios'].invalid">
+                        Ingrese No. de años válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Tipo residuo</mat-label>
+                    <mat-select formControlName="id_residuo" placeholder="Seleccionar tipo residuo">
+                        <mat-option *ngFor="let waste of wasteOptions" [value]="waste.value">
+                            {{ waste.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['id_residuo'].invalid">
+                        Seleccione el tipo de residuo generado
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Volumen</mat-label>
+                    <input matInput formControlName="volumen" placeholder="Ingrese volumen aprox." maxlength="5">
+                    <mat-error *ngIf="contractInfoGroup.controls['volumen'].invalid">
+                        Ingrese un valor de volumen válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Unidad de volumen</mat-label>
+                    <mat-select formControlName="id_unidad" placeholder="Seleccionar tipo de unidad">
+                        <mat-option *ngFor="let unit of unitOptions" [value]="unit.value">
+                            {{ unit.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['id_unidad'].invalid">
+                        Seleccione el tipo de unidad de volumen
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Costo mensual</mat-label>
+                    <input matInput formControlName="costo_mes" placeholder="Ingrese costo mensual" maxlength="8">
+                    <mat-error *ngIf="contractInfoGroup.controls['costo_mes'].invalid">
+                        Ingrese un costo mensual válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Monto total</mat-label>
+                    <input matInput formControlName="monto_total" placeholder="Ingrese monto contractual" maxlength="10">
+                    <mat-error *ngIf="contractInfoGroup.controls['monto_total'].invalid">
+                        Ingrese un monto contractual válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Forma de pago</mat-label>
+                    <mat-select formControlName="id_forma_pago" placeholder="Seleccionar forma de pago">
+                        <mat-option *ngFor="let type of paymentTypeOptions" [value]="type.value">
+                            {{ type.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['id_forma_pago'].invalid">
+                        Seleccione forma de pago válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Plan de pagos</mat-label>
+                    <mat-select formControlName="id_plan_pago" placeholder="Seleccionar el plan de pagos">
+                        <mat-option *ngFor="let payment of paymentOptions" [value]="payment.value">
+                            {{ payment.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['id_plan_pago'].invalid">
+                        Seleccione el plan de pagos válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 30%">
+                    <mat-label>Plan de recojos</mat-label>
+                    <mat-select formControlName="id_plan_recojo" placeholder="Seleccionar el plan de recojos">
+                        <mat-option *ngFor="let collection of collectionOptions" [value]="collection.value">
+                            {{ collection.display }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contractInfoGroup.controls['id_plan_recojo'].invalid">
+                        Seleccione el plan de recojo de residuos
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-checkbox class="no-label-field">Lun</mat-checkbox>
+                <mat-checkbox class="no-label-field">Mar</mat-checkbox>
+                <mat-checkbox class="no-label-field">Mie</mat-checkbox>
+                <mat-checkbox class="no-label-field">Jue</mat-checkbox>
+                <mat-checkbox class="no-label-field">Vie</mat-checkbox>
+                <mat-checkbox class="no-label-field">Sab</mat-checkbox>
+                <mat-checkbox class="no-label-field">Dom</mat-checkbox>
+            </div>
+
+            <div class="vertical-form-field">
+                <mat-form-field appearance="standard" style="width: 70%">
+                    <mat-label>Observaciones</mat-label>
+                    <input matInput formControlName="observacion" placeholder="Ingrese observaciones" maxlength="200">
+                </mat-form-field>
+            </div>
+
+            <div class="vertical-form-field">
+                <div>
+                    <mat-divider></mat-divider>
+                </div>
+                <fieldset style="width: 70%">
+                    <legend>Declaración jurada</legend>
+                    <div>
+                        <mat-checkbox class="no-label-field">
+                            Yo declaro que los datos ingresados son verdaderos y acepto los términos y condiciones para
+                            proceder con este trámite.
+                        </mat-checkbox>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
