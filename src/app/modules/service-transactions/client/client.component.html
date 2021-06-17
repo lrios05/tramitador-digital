@@ -2,17 +2,15 @@
     <mat-card-content>
         <form [formGroup]="clientInfoGroup">
             <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 30%">
+                    <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>No. Cedula de identidad</mat-label>
-                        <input matInput formControlName="ci" placeholder="Ingrese No. de Cedula de identidad" maxlength="30">
+                        <input matInput formControlName="ci" placeholder="Ingrese No. de Cedula de identidad" maxlength="10">
                         <mat-error *ngIf="clientInfoGroup.controls['ci'].invalid">
                             Ingrese un No. de identificación válido
                         </mat-error>
                     </mat-form-field>
-            </div>
-        
-            <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 30%">
+
+                    <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Origen del C.I.</mat-label>
                         <mat-select formControlName="origen_ci" placeholder="Seleccionar origen C.I.">
                             <mat-option *ngFor="let source of identificationSources" [value]="source.value">
@@ -26,7 +24,7 @@
             </div>
         
             <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 70%">
+                    <mat-form-field appearance="standard" class="full-width">
                         <mat-label>Nombres</mat-label>
                         <input matInput formControlName="nombre" placeholder="Ingrese nombre" maxlength="30">
                         <mat-error *ngIf="clientInfoGroup.controls['nombre'].invalid">
@@ -36,7 +34,7 @@
             </div>
         
             <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 50%">
+                    <mat-form-field appearance="standard" class="full-width">
                         <mat-label>Apellido paterno</mat-label>
                         <input matInput formControlName="ap_paterno" placeholder="Ingrese apellido paterno" maxlength="20">
                         <mat-error *ngIf="clientInfoGroup.controls['ap_paterno'].invalid">
@@ -46,43 +44,41 @@
             </div>
         
             <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 50%">
+                    <mat-form-field appearance="standard" class="full-width">
                         <mat-label>Apellido materno</mat-label>
                         <input matInput formControlName="ap_paterno" placeholder="Ingrese apellido materno" maxlength="20">
                     </mat-form-field>
             </div>
         
             <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 30%">
+                    <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>No. Celular</mat-label>
-                        <input matInput formControlName="celular" placeholder="Ingrese No. celular" maxlength="30">
+                        <input matInput formControlName="celular" placeholder="Ingrese No. celular" maxlength="12">
                         <mat-error *ngIf="clientInfoGroup.controls['celular'].invalid">
                             Ingrese No. de celular válido
                         </mat-error>
                     </mat-form-field>
-            </div>
-        
-            <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 70%">
-                        <mat-label>Correo electrónico</mat-label>
-                        <input matInput formControlName="email" placeholder="Ingrese su correo electrónico" maxlength="30">
-                        <mat-error *ngIf="clientInfoGroup.controls['email'].invalid">
-                            Ingrese un correo electrónico válido
-                        </mat-error>
-                    </mat-form-field>
-            </div>
-        
-            <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 30%">
+
+                    <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Teléfono</mat-label>
-                        <input matInput formControlName="telefono" placeholder="Ingrese No. de teléfono" maxlength="20">
+                        <input matInput formControlName="telefono" placeholder="Ingrese No. de teléfono" maxlength="10">
                     </mat-form-field>
             </div>
         
             <div class="vertical-form-field">
-                    <mat-form-field appearance="standard" class="no-label-field" style="width: 70%">
+                <mat-form-field appearance="standard" class="full-width">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput formControlName="email" placeholder="Ingrese su correo electrónico" maxlength="30">
+                    <mat-error *ngIf="clientInfoGroup.controls['email'].invalid">
+                        Ingrese un correo electrónico válido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        
+            <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="full-width">
                         <mat-label>Dirección</mat-label>
-                        <input matInput formControlName="direccion" placeholder="Ingrese su dirección de domicilio" maxlength="30">
+                        <input matInput formControlName="direccion" placeholder="Ingrese su dirección de domicilio" maxlength="100">
                         <mat-error *ngIf="clientInfoGroup.controls['direccion'].invalid">
                             Ingrese una dirección válida
                         </mat-error>
@@ -90,14 +86,14 @@
             </div>
         
             <div class="vertical-form-field">
-                <div>
+                <div style="width: 50%; padding-top: 10px; padding-bottom: 30px">
                     <mat-divider></mat-divider>
                 </div>
-                <fieldset style="width: 70%">
+                <fieldset class="full-width">
                     <legend>Declaración jurada</legend>
                     <div>
                         <mat-checkbox class="no-label-field">
-                            Yo declaro que los datos ingresados son verdaderos y acepto los términos y condiciones para proceder con este trámite.
+                            Yo declaro que los datos ingresados son verdaderos y acepto los términos y condiciones para <br> proceder con este trámite.
                         </mat-checkbox>
                     </div>
                 </fieldset>

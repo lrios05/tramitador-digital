@@ -23,12 +23,12 @@ export class CompanyComponent implements OnInit {
   }
 
   companyInfoGroup: FormGroup = this.formBuilder.group({
-    'nit': ['', [Validators.required, Validators.pattern(/^\d{6}(?:[-\s]\d{4})?$/)]],
+    'nit': ['', [Validators.required, Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
     'sociedad': ['', [Validators.required]],
     'nom_actividad': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'rubro': ['', [Validators.required]],
     'actividad': ['', [Validators.required]],
-    'celular': ['', [Validators.required, Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
+    'celular': ['591-', [Validators.required, Validators.pattern(/^\d{3}(?:[-\s]\d{8})?$/)]],
     'telefono': ['', [Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
     'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
     'direccion': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]],

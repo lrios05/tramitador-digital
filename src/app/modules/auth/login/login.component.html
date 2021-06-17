@@ -3,7 +3,9 @@
     <mat-card-content>
         <div class="header">
             <h2>Inicio de sesión</h2>
-            <hr>
+        </div>
+        <div class="hr-row">
+            <mat-divider></mat-divider>
         </div>
         <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <mat-form-field appearance="standard" class="full-width">
@@ -42,7 +44,7 @@
             <mat-divider></mat-divider>
         </div>
         <div>
-            <button type="button" mat-stroked-button color="primary">Crear cuenta nueva</button>
+            <button type="button" mat-stroked-button color="primary" (click)="goRegisterForm()">Crear cuenta nueva</button>
         </div>
         <div>
             <span>Registrate para acceder a los contratos de servicios.</span>

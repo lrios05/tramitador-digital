@@ -20,12 +20,12 @@ export class ClientComponent implements OnInit {
   }
 
   clientInfoGroup: FormGroup = this.formBuilder.group({
-    'ci': ['', [Validators.required, Validators.pattern(/^\d{6}(?:[-\s]\d{4})?$/)]],
+    'ci': ['', [Validators.required, Validators.pattern(/^\d{10}(?:[-\s]\d{4})?$/)]],
     'origen_ci': ['', [Validators.required]],
     'nombre': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'ap_paterno': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'ap_materno': [''],
-    'celular': ['', [Validators.required, Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
+    'celular': ['591-', [Validators.required, Validators.pattern(/^\d{3}(?:[-\s]\d{8})?$/)]],
     'telefono': ['', [Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
     'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
     'direccion': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]]

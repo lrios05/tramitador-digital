@@ -9,7 +9,7 @@ mat-card {
 }
 
 .full-width {
-    width: 90%;
+    width: 95%;
 }
 
 .button-row {
@@ -22,5 +22,11 @@ mat-card {
 }
 
 .hr-row {
-    padding: 20px 0;
+    padding: 15px 0;
+}
+
+.row-divider {
+    width: 50%; 
+    padding-top: 10px; 
+    padding-bottom: 30px;
 }

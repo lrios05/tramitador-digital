@@ -30,7 +30,7 @@ export class ContractComponent implements OnInit {
   }
 
   contractInfoGroup: FormGroup = this.formBuilder.group({
-    'cod_contrato': ['', [Validators.required, Validators.pattern(/^\d+(?:-\d{4})?$/)]],
+    'cod_contrato': [''],
     'fecha_registro': ['', [Validators.required]],
     'tipo_servicio': ['', [Validators.required]],
     'id_servicio': ['', [Validators.required]],

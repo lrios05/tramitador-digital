@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AppMaterialModule } from './../core/services/app-material.module';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +30,7 @@ import { ServiceTransactionsComponent } from './service-transactions/service-tra
   ], 
   imports: [
     CommonModule,
+    RouterModule,
     AppMaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule

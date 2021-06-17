@@ -2,17 +2,15 @@
     <mat-card-content>
         <form [formGroup]="companyInfoGroup">
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 30%">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>No. Nit</mat-label>
                     <input matInput formControlName="nit" placeholder="Ingrese No. NIT" maxlength="15">
                     <mat-error *ngIf="companyInfoGroup.controls['nit'].invalid">
                         Ingrese un No. de NIT válido
                     </mat-error>
                 </mat-form-field>
-            </div>
 
-            <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 30%">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>Sociedad comercial</mat-label>
                     <mat-select formControlName="sociedad" placeholder="Seleccionar tipo de sociedad">
                         <mat-option *ngFor="let type of typeSocieties" [value]="type.value">
@@ -26,7 +24,7 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 70%">
+                <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Nombre de la empresa</mat-label>
                     <input matInput formControlName="nom_actividad" placeholder="Ingrese nombre de la empresa"
                         maxlength="100">
@@ -37,7 +35,7 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 30%">
+                <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Rubro de la empresa</mat-label>
                     <mat-select formControlName="rubro" placeholder="Seleccionar tipo de rubro">
                         <mat-option *ngFor="let rubro of tipoRubros" [value]="rubro.value">
@@ -51,7 +49,7 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 30%">
+                <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Actividad comercial</mat-label>
                     <mat-select formControlName="actividad" placeholder="Seleccionar actividad comercial">
                         <mat-option *ngFor="let activity of typeActivities" [value]="activity.value">
@@ -65,21 +63,17 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 30%">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>No. celular corporativo</mat-label>
-                    <input matInput formControlName="celular" placeholder="Ingrese No. celular corporativo"
-                        maxlength="10">
+                    <input matInput formControlName="celular" placeholder="Ingrese No. celular corporativo" maxlength="12">
                     <mat-error *ngIf="companyInfoGroup.controls['celular'].invalid">
                         Ingrese No. de celular válido
                     </mat-error>
                 </mat-form-field>
-            </div>
 
-            <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 30%">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>No. teléfono de oficina</mat-label>
-                    <input matInput formControlName="telefono" placeholder="Ingrese No. de teléfono de la empresa"
-                        maxlength="10">
+                    <input matInput formControlName="telefono" placeholder="Ingrese No. de teléfono de la empresa" maxlength="8">
                     <mat-error *ngIf="companyInfoGroup.controls['telefono'].invalid">
                         Ingrese No. de teléfono válido
                     </mat-error>
@@ -87,7 +81,7 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 70%">
+                <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Correo electrónico</mat-label>
                     <input matInput formControlName="email" placeholder="Ingrese su correo electrónico" maxlength="30">
                     <mat-error *ngIf="companyInfoGroup.controls['email'].invalid">
@@ -97,7 +91,7 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" class="no-label-field" style="width: 70%">
+                <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Dirección de la empresa</mat-label>
                     <input matInput formControlName="direccion" placeholder="Ingrese la dirección de la empresa"
                         maxlength="150">
@@ -108,22 +102,21 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" style="width: 50%">
+                <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Observaciones</mat-label>
-                    <input matInput formControlName="observacion" placeholder="Ingrese observaciones" maxlength="200">
+                    <input matInput formControlName="observacion" placeholder="Ingrese observaciones">
                 </mat-form-field>
             </div>
 
             <div class="vertical-form-field">
-                <div>
+                <div class="row-divider">
                     <mat-divider></mat-divider>
                 </div>
-                <fieldset style="width: 70%">
+                <fieldset class="full-width">
                     <legend>Declaración jurada</legend>
                     <div>
                         <mat-checkbox class="no-label-field">
-                            Yo declaro que los datos ingresados son verdaderos y acepto los términos y condiciones para
-                            proceder con este trámite.
+                            Yo declaro que los datos ingresados son verdaderos y acepto los términos y condiciones para <br> proceder con este trámite.
                         </mat-checkbox>
                     </div>
                 </fieldset>
