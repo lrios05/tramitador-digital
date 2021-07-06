@@ -16,6 +16,16 @@ import { CompanyComponent } from './service-transactions/company/company.compone
 import { ContractComponent } from './service-transactions/contract/contract.component';
 import { ServiceTransactionsComponent } from './service-transactions/service-transactions.component';
 import { IndexComponent } from './index/index.component';
+import { BusinessTypeComponent } from './service-transactions/business-type/business-type.component';
+import { ActivityGroupComponent } from './service-transactions/activity-group/activity-group.component';
+import { ActivityComponent } from './service-transactions/activity/activity.component';
+import { ServiceTypeComponent } from './service-transactions/service-type/service-type.component';
+import { ServiceOfferComponent } from './service-transactions/service-offer/service-offer.component';
+import { WasteTypeComponent } from './service-transactions/waste-type/waste-type.component';
+import { UnitComponent } from './service-transactions/unit/unit.component';
+import { PaymentTypeComponent } from './service-transactions/payment-type/payment-type.component';
+import { PaymentFrequencyComponent } from './service-transactions/payment-frequency/payment-frequency.component';
+import { GatherFrequencyComponent } from './service-transactions/gather-frequency/gather-frequency.component';
 
 
 
@@ -30,7 +40,17 @@ import { IndexComponent } from './index/index.component';
     CompanyComponent,
     ContractComponent,
     ServiceTransactionsComponent,
-    IndexComponent
+    IndexComponent,
+    BusinessTypeComponent,
+    ActivityGroupComponent,
+    ActivityComponent,
+    ServiceTypeComponent,
+    ServiceOfferComponent,
+    WasteTypeComponent,
+    UnitComponent,
+    PaymentTypeComponent,
+    PaymentFrequencyComponent,
+    GatherFrequencyComponent
   ], 
   imports: [
     CommonModule,

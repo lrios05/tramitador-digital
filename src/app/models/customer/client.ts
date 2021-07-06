@@ -1,14 +1,14 @@
 export class Client {
     id?: number;
-    dni: string | undefined;
+    dni: string;
     originDni?: string;
-    name: string | undefined;
-    paternal: string | undefined;
-    maternal: string | undefined;
-    mobile: string | undefined;
-    phone: string | undefined;
-    email: string | undefined;
-    address: string | undefined;
+    name: string;
+    paternal: string;
+    maternal: string;
+    mobile: string;
+    phone: string;
+    email: string;
+    address: string;
 
     constructor(dni: string, originDni: string, name: string,
                 paternal: string, maternal: string, 

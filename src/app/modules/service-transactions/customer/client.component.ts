@@ -51,7 +51,7 @@ export class ClientComponent implements OnInit {
       }, err => {
         console.log(err);
       }
-    )
+    );
   }
 
   private formToClient(){
