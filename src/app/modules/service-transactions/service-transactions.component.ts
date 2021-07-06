@@ -3,7 +3,7 @@ import { FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { ClientComponent } from '../../modules/service-transactions/client/client.component';
+import { ClientComponent } from './customer/client.component';
 import { CompanyComponent } from '../../modules/service-transactions/company/company.component';
 import { ContractComponent } from '../../modules/service-transactions/contract/contract.component';
 
@@ -46,7 +46,7 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
 
   private manageClientSubscription() {
     this.clientSubscription = this.client
-      .clientInfoGroup
+      .clientForm
       .valueChanges
       .pipe(
         debounceTime(500),
@@ -60,7 +60,7 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
 
   private manageClientCheck() {
     if (this.currentStepIndex == CLIENT_INDEX) {
-      if (this.client.clientInfoGroup.valid) {
+      if (this.client.clientForm.valid) {
         this.clearIconError(CLIENT_INDEX);
       }
     }
@@ -122,7 +122,7 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
   }
 
   private validateClientForm() {
-    let clientForm: FormGroup = this.client.clientInfoGroup;
+    let clientForm: FormGroup = this.client.clientForm;
 
     Object.keys(clientForm.controls).forEach(key => {
       const controlErrors: any = clientForm.get(key)?.errors as ValidationErrors;

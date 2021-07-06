@@ -6,21 +6,21 @@
         <form name="registerForm" [formGroup]="registerForm" (ngSubmit)="onRegister()">
             <mat-form-field class="full-width" appearance="standard">
                 <mat-label>Nombre</mat-label>
-                <input formControlName="nombre" matInput placeholder="Ingrese su nombre" required>
-                <mat-error *ngIf="!registerForm.controls['nombre'].valid">
+                <input formControlName="name" matInput placeholder="Ingrese su nombre" required>
+                <mat-error *ngIf="!registerForm.controls['name'].valid">
                     Nombre de usuario es requerido
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="standard">
                 <mat-label>Apellido paterno</mat-label>
-                <input formControlName="apPaterno" matInput placeholder="Ingrese apellido paterno" required>
-                <mat-error *ngIf="!registerForm.controls['apPaterno'].valid">
+                <input formControlName="paternal" matInput placeholder="Ingrese apellido paterno" required>
+                <mat-error *ngIf="!registerForm.controls['paternal'].valid">
                     Apellido paterno es requerido
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="standard">
                 <mat-label>Apellido materno</mat-label>
-                <input formControlName="apMaterno" matInput placeholder="Ingrese apellido paterno" required>
+                <input formControlName="maternal" matInput placeholder="Ingrese apellido paterno" required>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="standard">
                 <mat-label>Email</mat-label>
@@ -47,13 +47,13 @@
                     </ng-container>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="full-width" appearance="standard">
+            <!--mat-form-field class="full-width" appearance="standard">
                 <mat-label>Movil</mat-label>
                 <input formControlName="movil" matInput placeholder="Ingrese número de celular" required>
                 <mat-error *ngIf="!registerForm.controls['movil'].valid">
                     Número de teléfono movil requerido
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field-->
             <button type="submit" mat-raised-button color="primary">Registrar</button>
             <div>
                 <mat-divider></mat-divider>
