@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 import { TokenService } from '../../../services/token.service';
+import { BusinessTypeService } from './../business-type/business-type.service';
+import { ActivityGroupService } from '../activity-group/activity-group.service';
+import { ActivityService } from '../activity/activity.service';
 import { CompanyService } from './company.service';
-import { activities } from '../../../core/constants/activity';
-import { rubros } from '../../../core/constants/rubro';
-import { societies } from '../../../core/constants/society';
-import { SelectOption } from '../../../shared/ui-elements/SelectOption';
-import { Business } from 'src/app/models/business/business';
+import { Business } from '../../../models/business/business';
+import { BusinessType } from '../../../models/business/business-type';
+import { ActivityGroup } from '../../../models/business/activity-group';
+import { Activity } from '../../../models/business/activity';
 
 @Component({
   selector: 'app-company',
@@ -16,27 +18,33 @@ import { Business } from 'src/app/models/business/business';
 })
 export class CompanyComponent implements OnInit {
 
-  typeSocieties: SelectOption[] = societies;
-  tipoRubros: SelectOption[] = rubros;
-  typeActivities: SelectOption[] = activities;
-
   business?: Business;
+  busTypes?: BusinessType[];
+  activityGroups?: ActivityGroup[];
+  activities?: Activity[];
+
  
   constructor(private formBuilder: FormBuilder,
               private tokenService: TokenService,
-              private companyService: CompanyService) { }
+              private companyService: CompanyService,
+              private typeService: BusinessTypeService,
+              private activityGroupService: ActivityGroupService,
+              private activityService: ActivityService) { }
 
   ngOnInit(): void {
+    this.getBusinessTypeList();
+    this.getActivityGroupList();
+    this.getActivityList();
   }
 
   companyForm: FormGroup = this.formBuilder.group({
-    'nit': ['', [Validators.required, Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
+    'nit': ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     'typeId': ['', [Validators.required]],
     'name': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
-    'groupID': ['', [Validators.required]],
+    'groupId': ['', [Validators.required]],
     'activityId': ['', [Validators.required]],
-    'mobile': ['591-', [Validators.required, Validators.pattern(/^\d{3}(?:[-\s]\d{8})?$/)]],
-    'phone': ['', [Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
+    'mobile': ['591-', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+    'phone': ['', [Validators.pattern(/^[0-9]+$/)]],
     'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
     'address': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]]
   });
@@ -49,7 +57,6 @@ export class CompanyComponent implements OnInit {
     this.companyService.createBusiness(customerId!, this.business!).subscribe(
       data => {
         let res: any = data;
-        console.log(res);
       }, err => {
         console.log(err);
       }
@@ -58,7 +65,7 @@ export class CompanyComponent implements OnInit {
 
   formToCompany() {
     this.business = new Business(
-      this.companyForm.get('dni')?.value,
+      this.companyForm.get('nit')?.value,
       this.companyForm.get('name')?.value,
       this.companyForm.get('mobile')?.value,
       this.companyForm.get('phone')?.value,
@@ -69,4 +76,49 @@ export class CompanyComponent implements OnInit {
       this.companyForm.get('activityId')?.value
      );
   }
+
+  activityHandler(value: any): void{
+    let groupId: number;
+    if (value != null) { 
+      groupId = value;
+      this.loadActivitiesBy(groupId);
+    }
+  }
+
+  loadActivitiesBy(groupId: number) {
+    this.activityService.listActivities(groupId).subscribe(
+      data => {
+        let res: any = data;
+        this.activities = res.payload;
+      }
+    );
+  }
+
+  getBusinessTypeList() {
+    this.typeService.listTypes().subscribe(
+      data => {
+        let res: any = data;
+        this.busTypes = res.payload;
+      }
+    );
+  }
+
+  getActivityGroupList() {
+    this.activityGroupService.listGroup().subscribe(
+      data => {
+        let res: any = data;
+        this.activityGroups = res.payload;
+      }
+    );
+  }
+
+  getActivityList() {
+    this.activityService.listAllActivities().subscribe(
+      data => {
+        let res: any = data;
+        this.activities = res.payload;
+      }
+    );
+  }
+
 }

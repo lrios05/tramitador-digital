@@ -9,20 +9,24 @@ import { ServiceOffer } from '../../../models/service-offer/service-offer';
 })
 export class ServiceOfferService {
 
-  serviceURL = 'http://localhost:8080/api/';
+  serviceURL = 'http://localhost:8080/api/service/';
 
   constructor(private httpClient: HttpClient) { }
 
   public findService(id: number): Observable<ServiceOffer> {
-    return this.httpClient.get<ServiceOffer>(this.serviceURL + `service/find/${id}`);
+    return this.httpClient.get<ServiceOffer>(this.serviceURL + `find/${id}`);
   }
 
-  public listServices(): Observable<ServiceOffer[]> {
-    return this.httpClient.get<ServiceOffer[]>(this.serviceURL + 'service/list');
+  public listServices(id: number): Observable<ServiceOffer> {
+    return this.httpClient.get<ServiceOffer>(this.serviceURL + `list/${id}`);
+  }
+
+  public listAllServices(): Observable<ServiceOffer[]> {
+    return this.httpClient.get<ServiceOffer[]>(this.serviceURL + 'listall');
   }
 
   public createService(serviceOffer: ServiceOffer): Observable<any> {
-    return this.httpClient.post<any>(this.serviceURL + 'service/create', serviceOffer);
+    return this.httpClient.post<any>(this.serviceURL + 'create', serviceOffer);
   }
 
 }

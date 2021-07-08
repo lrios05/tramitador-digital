@@ -29,13 +29,13 @@ export class ClientComponent implements OnInit {
   }
 
   clientForm: FormGroup = this.formBuilder.group({
-    'dni': ['', [Validators.required, Validators.pattern(/^\d{10}(?:[-\s]\d{4})?$/)]],
+    'dni': ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     'originDni': ['', [Validators.required]],
     'name': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'paternal': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'maternal': [''],
-    'mobile': ['591-', [Validators.required, Validators.pattern(/^\d{3}(?:[-\s]\d{8})?$/)]],
-    'phone': ['', [Validators.pattern(/^\d{7}(?:[-\s]\d{4})?$/)]],
+    'mobile': ['591-', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+    'phone': ['', [Validators.pattern(/^[0-9]+$/)]],
     'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
     'address': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]]
   });

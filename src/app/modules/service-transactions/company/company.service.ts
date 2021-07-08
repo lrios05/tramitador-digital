@@ -9,20 +9,20 @@ import { Business } from '../../../models/business/business';
 })
 export class CompanyService {
 
-  businessURL = 'http://localhost:8080/api/';
+  businessURL = 'http://localhost:8080/api/business/';
 
   constructor(private httpClient: HttpClient) { }
 
   public findBusiness(id: number): Observable<Business> {
-    return this.httpClient.get<Business>(this.businessURL + `business/find/${id}`);
+    return this.httpClient.get<Business>(this.businessURL + `find/${id}`);
   }
 
   public listBusiness(): Observable<Business[]> {
-    return this.httpClient.get<Business[]>(this.businessURL + 'business/list');
+    return this.httpClient.get<Business[]>(this.businessURL + 'list');
   }
 
   public createBusiness(id: string, business: Business): Observable<any> {
-    return this.httpClient.post<any>(this.businessURL + `business/signup/${id}`, business);
+    return this.httpClient.post<any>(this.businessURL + `signup/${id}`, business);
   }
 
 }

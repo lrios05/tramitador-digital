@@ -18,7 +18,7 @@ export class GatherFrequencyService {
   }
 
   public listGatherFrequencies(): Observable<GatherFrequency[]> {
-    return this.httpClient.get<GatherFrequency[]>(this.gatherURL + 'listgatherfrequencies');
+    return this.httpClient.get<GatherFrequency[]>(this.gatherURL + 'listgatherfrequency');
   }
 
   public createGatherFrequency(gatherFrequency: GatherFrequency): Observable<any> {

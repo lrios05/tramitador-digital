@@ -19,7 +19,7 @@ export class PaymentFrequencyService {
   }
 
   public listPaymentFrequencies(): Observable<PaymentFrequency[]> {
-    return this.httpClient.get<PaymentFrequency[]>(this.paymentURL + 'listpaymentfrequencies');
+    return this.httpClient.get<PaymentFrequency[]>(this.paymentURL + 'listpaymentfrequency');
   }
 
   public createPaymentFrequency(paymentFrequency: PaymentFrequency): Observable<any> {

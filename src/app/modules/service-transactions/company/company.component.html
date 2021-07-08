@@ -4,7 +4,7 @@
             <div class="vertical-form-field">
                 <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>No. Nit</mat-label>
-                    <input matInput formControlName="nit" placeholder="Ingrese No. NIT" maxlength="15">
+                    <input matInput formControlName="nit" placeholder="Ingrese No. NIT" maxlength="12">
                     <mat-error *ngIf="companyForm.controls['nit'].invalid">
                         Ingrese un No. de NIT válido
                     </mat-error>
@@ -13,8 +13,8 @@
                 <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>Sociedad comercial</mat-label>
                     <mat-select formControlName="typeId" placeholder="Seleccionar tipo de sociedad">
-                        <mat-option *ngFor="let type of typeSocieties" [value]="type.value">
-                            {{ type.display }}
+                        <mat-option *ngFor="let type of busTypes" [value]="type.typeId">
+                            {{ type.businessType }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="companyForm.controls['typeId'].invalid">
@@ -37,9 +37,9 @@
             <div class="vertical-form-field">
                 <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Rubro de la empresa</mat-label>
-                    <mat-select formControlName="groupId" placeholder="Seleccionar tipo de rubro">
-                        <mat-option *ngFor="let rubro of tipoRubros" [value]="rubro.value">
-                            {{ rubro.display }}
+                    <mat-select formControlName="groupId" (selectionChange)="activityHandler($event.value)" placeholder="Seleccionar tipo de rubro">
+                        <mat-option *ngFor="let group of activityGroups" [value]="group.groupId">
+                            {{ group.activityGroup }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="companyForm.controls['groupId'].invalid">
@@ -52,8 +52,8 @@
                 <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Actividad comercial</mat-label>
                     <mat-select formControlName="activityId" placeholder="Seleccionar actividad comercial">
-                        <mat-option *ngFor="let activity of typeActivities" [value]="activity.value">
-                            {{ activity.display }}
+                        <mat-option *ngFor="let activity of activities" [value]="activity.activityId">
+                            {{ activity.activity }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="companyForm.controls['activityId'].invalid">

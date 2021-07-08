@@ -9,7 +9,7 @@ import { ActivityGroup } from '../../../models/business/activity-group';
 })
 export class ActivityGroupService {
 
-  groupURL = 'http://localhost:8080/api/business';
+  groupURL = 'http://localhost:8080/api/business/';
 
   constructor(private httpClient: HttpClient) { }
 

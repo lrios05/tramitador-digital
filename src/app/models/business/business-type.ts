@@ -2,7 +2,7 @@ export class BusinessType {
 
     typeId: number;
     businessType: string;
-    description: string;
+    description?: string;
 
     constructor(typeId: number, businessType: string, description: string) {
         this.typeId = typeId;
