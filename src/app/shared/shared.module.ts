@@ -5,7 +5,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { AppMaterialModule } from '../core/services/app-material.module';
 
 
 @NgModule({
@@ -17,12 +17,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   imports: [
     CommonModule,
     RouterModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AppMaterialModule
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    AppMaterialModule
   ]
 })
 export class SharedModule { }

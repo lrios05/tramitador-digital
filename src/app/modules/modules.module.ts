@@ -26,6 +26,8 @@ import { UnitComponent } from './service-transactions/unit/unit.component';
 import { PaymentTypeComponent } from './service-transactions/payment-type/payment-type.component';
 import { PaymentFrequencyComponent } from './service-transactions/payment-frequency/payment-frequency.component';
 import { GatherFrequencyComponent } from './service-transactions/gather-frequency/gather-frequency.component';
+import { InfectiusComponent } from './templates/direct/infectius/infectius.component';
+import { SolidsComponent } from './templates/direct/solids/solids.component';
 
 
 
@@ -50,7 +52,9 @@ import { GatherFrequencyComponent } from './service-transactions/gather-frequenc
     UnitComponent,
     PaymentTypeComponent,
     PaymentFrequencyComponent,
-    GatherFrequencyComponent
+    GatherFrequencyComponent,
+    InfectiusComponent,
+    SolidsComponent
   ], 
   imports: [
     CommonModule,

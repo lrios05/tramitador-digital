@@ -1,23 +1,28 @@
-.main-title {
-    text-align: center;
-    margin-top: 35px;
+.page {
+    margin-top: 0.2rem;
+    color: white;
+    padding: 1rem;
+    background: #f0f0f5;
+    &__content {
+        min-height: calc(100vh - 180px);
+        border-radius: 10px;
+        margin-top: 0.2rem;
+        background: white;
+        color: black;
+        //font-size: 2rem;
+        &-data {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 }
 
-.main-title h1 {
-    font-size: 25px;
-    font-weight: 500;
-    color: #232A3A;
-}
-
-.main-title h3 {
-    font-size: 20px;
+.title {
+    margin-top: 3rem;
+    font-size: 26px;
     font-weight: 400;
-    color: #232A3A;
-}
-
-.hr-line {
-    width: 200px;
-    border: 2px solid darkcyan;
+    color: #47476b;
 }
 
 .img-card {
@@ -38,7 +43,7 @@
 }
 
 .config-stepper {
-    margin-top: 8px;
+    margin-top: 3px;
     width: 80%;
   }
   

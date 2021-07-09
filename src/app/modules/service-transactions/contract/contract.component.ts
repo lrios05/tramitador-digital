@@ -87,6 +87,7 @@ export class ContractComponent implements OnInit {
       data => {
         let res: any = data;
         console.log(res);
+        this.tokenService.setContract(res.payload.contractId);
       }, err => {
         console.log(err);
       }

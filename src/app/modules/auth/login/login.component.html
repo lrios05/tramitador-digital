@@ -1,54 +1,60 @@
-<mat-card>
+<div class="container-fluid page">
+    <div class="page__content shadow p-2 position-relative">
+        <div class="page__content-data position-absolute text-center">
+            <div><h1 class="title">Bienvenido a nuestro portal de tramites</h1></div>
+            <mat-card>
+                <mat-card-content>
+                    <div class="header">
+                        <h2><mat-icon>lock_open</mat-icon> Inicio de sesión</h2>
+                    </div>
+                    <div class="hr-row">
+                        <mat-divider></mat-divider>
+                    </div>
+                    <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                        <mat-form-field appearance="standard" class="full-width">
+                            <mat-label>Ingrese su correo</mat-label>
+                            <input matInput formControlName="email" placeholder="Correo electrónico" required>
+                            <mat-error *ngIf="!loginForm.controls['email'].valid">
+                                <ng-container [ngSwitch]="loginForm.controls['email'].value">
+                                    <ng-container *ngSwitchCase="''">Email es requerido</ng-container>
+                                    <ng-container *ngSwitchDefault>Formato de correo no válildo</ng-container>
+                                </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard" class="full-width">
+                            <mat-label>Ingrese su contraseña</mat-label>
+                            <input matInput formControlName="password" placeholder="Contraseña" [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="!loginForm.controls['password'].valid">
+                                <ng-container [ngSwitch]="loginForm.controls['password'].value">
+                                    <ng-container *ngSwitchCase="''">Password es requerido</ng-container>
+                                    <ng-container *ngSwitchDefault>Formato debe contener (caracteres: miniscula, mayuscula, digitos
+                                        y un símbolo)</ng-container>
+                                </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="aLink">
+                            <a href="#">Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="button-row">
+                            <button type="submit" mat-raised-button color="primary">Iniciar sesión</button>
+                        </div>
+                    </form>
+                    <div class="hr-row">
+                        <mat-divider></mat-divider>
+                    </div>
+                    <div>
+                        <button type="button" mat-stroked-button color="primary" (click)="goRegisterForm()">Crear cuenta nueva</button>
+                    </div>
+                    <div>
+                        <span>Registrate para acceder a los contratos de servicios.</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
 
-    <mat-card-content>
-        <div class="header">
-            <h2>Inicio de sesión</h2>
-        </div>
-        <div class="hr-row">
-            <mat-divider></mat-divider>
-        </div>
-        <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-            <mat-form-field appearance="standard" class="full-width">
-                <mat-label>Ingrese su correo</mat-label>
-                <input matInput formControlName="email" placeholder="Correo electrónico" required>
-                <mat-error *ngIf="!loginForm.controls['email'].valid">
-                    <ng-container [ngSwitch]="loginForm.controls['email'].value">
-                        <ng-container *ngSwitchCase="''">Email es requerido</ng-container>
-                        <ng-container *ngSwitchDefault>Formato de correo no válildo</ng-container>
-                    </ng-container>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="standard" class="full-width">
-                <mat-label>Ingrese su contraseña</mat-label>
-                <input matInput formControlName="password" placeholder="Contraseña" [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error *ngIf="!loginForm.controls['password'].valid">
-                    <ng-container [ngSwitch]="loginForm.controls['password'].value">
-                        <ng-container *ngSwitchCase="''">Password es requerido</ng-container>
-                        <ng-container *ngSwitchDefault>Formato debe contener (caracteres: miniscula, mayuscula, digitos
-                            y un símbolo)</ng-container>
-                    </ng-container>
-                </mat-error>
-            </mat-form-field>
-            <div class="aLink">
-                <a href="#">Olvidaste tu contraseña?</a>
-            </div>
-            <div class="button-row">
-                <button type="submit" mat-raised-button color="primary">Iniciar sesión</button>
-            </div>
-        </form>
-        <div class="hr-row">
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <button type="button" mat-stroked-button color="primary" (click)="goRegisterForm()">Crear cuenta nueva</button>
-        </div>
-        <div>
-            <span>Registrate para acceder a los contratos de servicios.</span>
-        </div>
-    </mat-card-content>
-
-</mat-card>

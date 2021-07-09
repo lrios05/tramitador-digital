@@ -1,0 +1,56 @@
+body {
+    background: linear-gradient(#ccc, #fff);
+    font: 12px sans-serif;
+    padding: 20px;
+}
+
+.paper {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin: 26px auto 0;
+    max-width: 750px;
+    max-height: max-content;
+    padding: 24px;
+    position: relative;
+    width: 80%;
+}
+
+.paper:before, .paper:after{
+    content: "";
+    height: 98%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.paper:before {
+    background-color: #fafafa;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    left: -5px;
+    top: 4px;
+    transform: rotate(-2.5deg);
+}
+
+.paper:after {
+    background-color: #f6f6f6;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    left: -3px;
+    top: 1px;
+    transform: rotate(1.4deg);
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-justify {
+    text-align: justify;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    text-align: left;
+}

@@ -1,68 +1,65 @@
-<mat-card>
-    <mat-card-content>
-        <div class="header">
-            <h2>Registro de usuario</h2>
+<div class="container-fluid page">
+    <div class="page__content shadow p-2 position-relative">
+        <div class="page__content-data position-absolute text-center">
+            <mat-card>
+                <mat-card-content>
+                    <div class="header">
+                        <h2><mat-icon>person_add</mat-icon> Nueva cuenta de usuario</h2>
+                    </div>
+                    <form name="registerForm" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                        <mat-form-field class="full-width" appearance="standard">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="name" matInput placeholder="Ingrese su nombre" required>
+                            <mat-error *ngIf="!registerForm.controls['name'].valid">
+                                Nombre de usuario es requerido
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="standard">
+                            <mat-label>Apellido paterno</mat-label>
+                            <input formControlName="paternal" matInput placeholder="Ingrese apellido paterno" required>
+                            <mat-error *ngIf="!registerForm.controls['paternal'].valid">
+                                Apellido paterno es requerido
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="standard">
+                            <mat-label>Apellido materno</mat-label>
+                            <input formControlName="maternal" matInput placeholder="Ingrese apellido paterno" required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="standard">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput placeholder="Ingrese correo electrónico" required>
+                            <mat-error *ngIf="!registerForm.controls['email'].valid">
+                                <ng-container [ngSwitch]="registerForm.controls['email'].value">
+                                    <ng-container *ngSwitchCase="''">Email es requerido</ng-container>
+                                    <ng-container *ngSwitchDefault>Formato de correo no válildo</ng-container>
+                                </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="standard">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+                            <button type="button" mat-icon-button matSuffix (clic)="hide = !hide"
+                                [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="!registerForm.controls['password'].valid">
+                                <ng-container [ngSwitch]="registerForm.controls['password'].value">
+                                    <ng-container *ngSwitchCase="''">Password es requerido</ng-container>
+                                    <ng-container *ngSwitchDefault>Formato debe contener (caracteres: miniscula, mayuscula, digitos
+                                        y un símbolo)</ng-container>
+                                </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                        <button type="submit" mat-raised-button color="primary">Registrar</button>
+                        <div class="align-vertical">
+                            <mat-divider></mat-divider>
+                                <a class="aLink" routerLink="/login">
+                                    Ya tengo una cuenta
+                                </a>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
         </div>
-        <form name="registerForm" [formGroup]="registerForm" (ngSubmit)="onRegister()">
-            <mat-form-field class="full-width" appearance="standard">
-                <mat-label>Nombre</mat-label>
-                <input formControlName="name" matInput placeholder="Ingrese su nombre" required>
-                <mat-error *ngIf="!registerForm.controls['name'].valid">
-                    Nombre de usuario es requerido
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="standard">
-                <mat-label>Apellido paterno</mat-label>
-                <input formControlName="paternal" matInput placeholder="Ingrese apellido paterno" required>
-                <mat-error *ngIf="!registerForm.controls['paternal'].valid">
-                    Apellido paterno es requerido
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="standard">
-                <mat-label>Apellido materno</mat-label>
-                <input formControlName="maternal" matInput placeholder="Ingrese apellido paterno" required>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="standard">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" matInput placeholder="Ingrese correo electrónico" required>
-                <mat-error *ngIf="!registerForm.controls['email'].valid">
-                    <ng-container [ngSwitch]="registerForm.controls['email'].value">
-                        <ng-container *ngSwitchCase="''">Email es requerido</ng-container>
-                        <ng-container *ngSwitchDefault>Formato de correo no válildo</ng-container>
-                    </ng-container>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="standard">
-                <mat-label>Password</mat-label>
-                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
-                <button type="button" mat-icon-button matSuffix (clic)="hide = !hide"
-                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                </button>
-                <mat-error *ngIf="!registerForm.controls['password'].valid">
-                    <ng-container [ngSwitch]="registerForm.controls['password'].value">
-                        <ng-container *ngSwitchCase="''">Password es requerido</ng-container>
-                        <ng-container *ngSwitchDefault>Formato debe contener (caracteres: miniscula, mayuscula, digitos
-                            y un símbolo)</ng-container>
-                    </ng-container>
-                </mat-error>
-            </mat-form-field>
-            <!--mat-form-field class="full-width" appearance="standard">
-                <mat-label>Movil</mat-label>
-                <input formControlName="movil" matInput placeholder="Ingrese número de celular" required>
-                <mat-error *ngIf="!registerForm.controls['movil'].valid">
-                    Número de teléfono movil requerido
-                </mat-error>
-            </mat-form-field-->
-            <button type="submit" mat-raised-button color="primary">Registrar</button>
-            <div>
-                <mat-divider></mat-divider>
-                <span>
-                    <a class="aLink" routerLink="/modules/auth/login">
-                        Ya tengo una cuenta
-                    </a>
-                </span>
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+    </div>
+</div>

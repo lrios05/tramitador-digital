@@ -13,7 +13,7 @@ export class ContractService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public findContract(id: number): Observable<Contract> {
+  public findContract(id: string): Observable<Contract> {
     return this.httpClient.get<Contract>(this.contractURL + `find/${id}`);
   }
 

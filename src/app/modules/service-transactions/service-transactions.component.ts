@@ -6,11 +6,13 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ClientComponent } from './customer/client.component';
 import { CompanyComponent } from '../../modules/service-transactions/company/company.component';
 import { ContractComponent } from '../../modules/service-transactions/contract/contract.component';
+import { InfectiusComponent } from '../../modules/templates/direct/infectius/infectius.component';
 
 const CLIENT_INDEX: number = 0;
 const COMPANY_INDEX: number = 1;
 const CONTRACT_INDEX: number = 2;
-const FINAL_INDEX: number = 3;
+const DOCUMENT_INDEX: number = 3;
+const FINAL_INDEX: number = 4;
 
 @Component({
   selector: 'app-service-transactions',
@@ -29,6 +31,7 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
   @ViewChild(ClientComponent) client!: ClientComponent;
   @ViewChild(CompanyComponent) company!: CompanyComponent;
   @ViewChild(ContractComponent) contract!: ContractComponent;
+  @ViewChild(InfectiusComponent) template!: InfectiusComponent;
 
   constructor() {
    }
@@ -103,6 +106,8 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
       // TODO populate Company object
     } else if (previousIndex == CONTRACT_INDEX) {
       // TODO populate Contract object
+    } else if (previousIndex == DOCUMENT_INDEX) {
+      // TODO Populate with document
     }
 
     if (currenIndex == FINAL_INDEX) {

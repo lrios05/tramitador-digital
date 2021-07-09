@@ -1,8 +1,49 @@
-<header fxLayoutAlign="space-between center">
+<mat-toolbar>
+    <mat-toolbar-row class="justify-content-between">
+        <div class="logo py-4">
+            <img src="../../../../assets//logos/logo1.png" alt="Company Logo" routerLink="/home">
+            <button mat-icon-button (click)="toggleSidebar()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div><h1>GESTOR DE TRAMITES DIGITALES</h1></div>
+        <div class="row mr-2 ml-auto">
+            <ul>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
+                        <img src="../../../../assets/images/user_avatar.jpg" alt="" class="user-image mr-1 p-2">
+                        Lindomar Rios
+                        <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>manage_accounts</mat-icon>
+                            Ver perfil
+                        </button>
+                        <mat-divider></mat-divider>
+                        <button mat-menu-item>
+                            <mat-icon>exit_to_app</mat-icon>
+                            Cerrar sesión
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<!--header fxLayoutAlign="space-between center">
+    <div>LOGO</div>
+    <div fxLayout="row" fxLayoutGap="20px">
+
+    </div>
+</header-->
+
+<!--header fxLayoutAlign="space-between center">
     <div>LOGO</div>
     <div fxLayout="row" fxLayoutGap="20px">
         <a routerLink="/">Home</a>
         <a routerLink="/posts">Posts</a>
         <a routerLink="/login">Login</a>
     </div>
-</header>
+</header-->
