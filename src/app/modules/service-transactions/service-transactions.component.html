@@ -1,54 +1,65 @@
-<div fxFlex fxLayout="column" fxLayoutGap="0px" class="route-content">
-    <div fxLayout="row wrap">
-        <div fxFlex="100" fxLayout="column">
-            <div>
-                <h2>Trámite de contrato de servicios</h2>
-            </div>
-            <!--div style="margin-bottom:20px">
+<div class="container">
+    <div fxFlex fxLayout="column" fxLayoutGap="0px">
+        <div fxLayout="row wrap">
+            <div fxFlex="100" fxLayout="column">
+                <div>
+                    <h2 class="title">Contrato de servicios</h2>
+                </div>
+                <!--div style="margin-bottom:20px">
             <alert></alert>
             </div-->
-            <div class="absolute-center" *ngIf="dataLoading">
-                <mat-spinner [diameter]="80"></mat-spinner>
-            </div>
-            <div *ngIf="!dataLoading" style="margin-right:10px">
-                <!--mat-vertical-stepper #stepper-->
-                <mat-vertical-stepper #stepper (selectionChange)="onStepChange($event)">
-                    <mat-step label="Datos del Cliente">
-                        <app-client></app-client>
-                        <div class="stepper-navigation">
-                            <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
-                        </div>
-                    </mat-step>
+                <div class="absolute-center" *ngIf="dataLoading">
+                    <mat-spinner [diameter]="80"></mat-spinner>
+                </div>
+                <div *ngIf="!dataLoading" style="margin-right:10px">
+                    <!--mat-vertical-stepper #stepper-->
+                    <mat-vertical-stepper #stepper (selectionChange)="onStepChange($event)" class="box-container">
+                        <mat-step label="Datos del Cliente">
+                            <app-client></app-client>
+                            <div class="stepper-navigation">
+                                <button mat-raised-button color="accent" matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
 
-                    <mat-step label="Datos de la Empresa">
-                        <app-company style="margin-top: 15px"></app-company>
-                        <div class="stepper-navigation">
-                            <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
-                            <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
-                        </div>
-                    </mat-step>
+                        <mat-step label="Datos de la Empresa">
+                            <app-company style="margin-top: 15px"></app-company>
+                            <div class="stepper-navigation">
+                                <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
+                                <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
 
-                    <mat-step label="Datos del Contrato">
-                        <app-contract style="margin-top: 15px"></app-contract>
-                        <div class="stepper-navigation">
-                            <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
-                            <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
-                        </div>
-                    </mat-step>
+                        <mat-step label="Datos del Contrato">
+                            <app-contract style="margin-top: 15px"></app-contract>
+                            <div class="stepper-navigation">
+                                <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
+                                <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
 
-                    <mat-step label="Firma Digital">
-                        <!--contact-review-form [contact]="contact" [errorMessages]="errorMessages"></contact-review-form-->
-                        <app-infectius style="margin-top: 15px"></app-infectius>
-                        <div style="margin-top:40px; margin-bottom:20px;margin-left:17px">
-                            <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
-                            <button [disabled]="!allFormsValid" *ngIf="!formSubmitted" mat-raised-button color="primary"
-                                (click)="saveForm()">
-                                Guardar y finalizar
-                            </button>
-                            <mat-spinner *ngIf="formSubmitted" [diameter]="50"></mat-spinner>
-                        </div>
-                    </mat-step>
-                </mat-vertical-stepper>
+                        <mat-step label="Firma Digital del contrato">
+                            <!--contact-review-form [contact]="contact" [errorMessages]="errorMessages"></contact-review-form-->
+                            <app-infectius style="margin-top: 15px"></app-infectius>
+                            <div style="margin-top:40px; margin-bottom:20px;margin-left:17px">
+                                <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
+                                <button [disabled]="!allFormsValid" *ngIf="!formSubmitted" mat-raised-button
+                                    color="primary" (click)="saveForm()">
+                                    Guardar y finalizar
+                                </button>
+                                <mat-spinner *ngIf="formSubmitted" [diameter]="50"></mat-spinner>
+                            </div>
+                        </mat-step>
+
+                        <mat-step label="Subir documentos">
+                            <app-file style="margin-top: 15px"></app-file>
+                            <div class="stepper-navigation">
+                                <button mat-raised-button color="accent" matStepperPrevious>Volver</button>
+                                <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
+
+                    </mat-vertical-stepper>
+                </div>
             </div>
         </div>
     </div>

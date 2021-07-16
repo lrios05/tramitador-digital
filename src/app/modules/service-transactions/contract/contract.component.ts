@@ -36,6 +36,8 @@ export class ContractComponent implements OnInit {
   gatherFrequencies?: GatherFrequency[];
   units?: Unit[];
   wasteTypes?: WasteType[];
+  payments: number = 0;
+  amount: number = 0.0;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -65,7 +67,7 @@ export class ContractComponent implements OnInit {
     'initDate': ['', [Validators.required]],
     'endDate': ['', [Validators.required]],
     'months': ['', [Validators.pattern(/^([0-9]){2}$/)]],
-    'years': ['', [Validators.pattern(/^([0-9]){4}$/)]],
+    'years': ['', [Validators.pattern(/^([0-9]){1}$/)]],
     'monthCost': ['', [Validators.required, Validators.pattern(/^\d+(?:.\d+)?$/)]],
     'totalCost': ['', [Validators.required, Validators.pattern(/^\d+(?:.\d+)?$/)]],
     'payTypeId': ['', [Validators.required]],
@@ -75,12 +77,13 @@ export class ContractComponent implements OnInit {
     'unitId': ['', [Validators.required]],
     'gatherId': ['', [Validators.required]],
     'days': ['', [Validators.required, Validators.pattern(/[a-zA-Z ]{2,14}/)]],
-    'payments': ['', [Validators.required, Validators.pattern(/^([0-9]){2}$/)]],
+    //'payments': ['', [Validators.required, Validators.pattern(/^([0-9]){2}$/)]],
     'obs': ['']
   });
 
   onRegister(){
     this.formToContract();
+    console.log(this.contract);
     let customerId = this.tokenService.getCustomer();
 
     this.contractService.createContract(customerId!, this.contract!).subscribe(
@@ -95,6 +98,8 @@ export class ContractComponent implements OnInit {
   }
 
   formToContract(){
+    this.getPaymentsNumber();
+
     this.contract = new Contract(
       this.contractForm.get('initDate')?.value,
       this.contractForm.get('endDate')?.value,
@@ -102,8 +107,8 @@ export class ContractComponent implements OnInit {
       this.contractForm.get('totalCost')?.value,
       this.contractForm.get('payTypeId')?.value,
       this.contractForm.get('paymentId')?.value,
-      this.contractForm.get('payments')?.value,
-      this.contractForm.get('amount')?.value,
+      this.payments,
+      this.amount,
       this.contractForm.get('gatherId')?.value,
       this.contractForm.get('wasteId')?.value,
       this.contractForm.get('volume')?.value,
@@ -193,6 +198,27 @@ export class ContractComponent implements OnInit {
         this.units = res.payload;
       }
     );
+  }
+
+  getPaymentsNumber(){
+    let index = this.contractForm.get('paymentId')?.value;
+    let totalCost = this.contractForm.get('totalCost')?.value;
+
+    let data: any = this.paymentFrequencies?.forEach(item => {
+      return (item.paymentId == index) ? item.frequency : '';
+    });
+
+    if (data == 'Mensual') {
+      this.payments = 12;     
+    } else if (data == 'Trimestral') {
+      this.payments = 4;
+    } else if (data == 'Semestral') {
+      this.payments = 2;
+    } else {
+      this.payments = 1;
+    }
+
+    this.amount = totalCost/this.payments;
   }
 
 }

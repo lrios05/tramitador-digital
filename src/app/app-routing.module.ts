@@ -19,6 +19,9 @@ const routes: Routes = [
     path: '', loadChildren: () => import("./layout/service-transactions-views/service-transactions-views.module")
               .then (m => m.ServiceTransactionsViewsModule)
   },
+  {
+    path: '', loadChildren: () => import("./layout/evaluation-views/evaluation.module").then (m => m.EvaluationModule)
+  }
 ];
 
 @NgModule({

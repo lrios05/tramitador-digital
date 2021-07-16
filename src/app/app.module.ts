@@ -9,6 +9,7 @@ import { LoginViewModule } from './layout/auth-views/login-view/login-view.modul
 import { RegisterViewModule } from './layout/auth-views/register-view/register-view.module';
 import { CustomerviewModule } from './layout/customerview/customerview.module';
 import { ServiceTransactionsViewsModule } from './layout/service-transactions-views/service-transactions-views.module';
+import { EvaluationModule } from './layout/evaluation-views/evaluation.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ServiceTransactionsViewsModule } from './layout/service-transactions-vi
     LoginViewModule,
     RegisterViewModule,
     CustomerviewModule,
-    ServiceTransactionsViewsModule
+    ServiceTransactionsViewsModule,
+    EvaluationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

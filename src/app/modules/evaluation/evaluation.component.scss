@@ -1,0 +1,31 @@
+.container{
+    margin-top: 2px;
+}
+
+.search-bar{
+    background-color: rgb(60, 60, 93);
+    text-align: center;
+}
+
+
+mat-form-field{
+    padding: 1rem 1.5rem;
+}
+
+.inner-container {
+    height: 400px;
+    overflow: auto;
+    margin-top: 0.6rem;
+}
+
+table {
+    width: 100%;
+}
+
+/*
+mat-card {
+    max-width: 750px;
+    margin: 1rem auto;
+    text-align:justify;
+}
+*/

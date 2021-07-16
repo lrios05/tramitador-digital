@@ -1,0 +1,66 @@
+.inner-container {
+    height: 530px;
+    overflow: auto;
+    margin-top: 0.5rem;
+}
+
+#customer{
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#business{
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#documents{
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#observations {
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.title-bar{
+    background: lightgray;
+    height: 36px;
+}
+
+h3{
+    font-weight: 500;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, td, tr {
+    border: none;
+}
+
+tr {
+    height: 25px;
+}
+
+.subtitle{
+    font-weight: 500;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+}
+
+.align-button{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+button{
+    margin: 5px;
+}

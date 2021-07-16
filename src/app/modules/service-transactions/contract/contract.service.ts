@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Contract } from '../../../models/contract/contract';
@@ -15,6 +15,11 @@ export class ContractService {
 
   public findContract(id: string): Observable<Contract> {
     return this.httpClient.get<Contract>(this.contractURL + `find/${id}`);
+  }
+
+  public findByCodeAndStatus(httpParams: HttpParams): Observable<any> {
+    console.log("LLEGA AL SERVICIO DE CONTRATOS");
+    return this.httpClient.get<any>(`${this.contractURL}find/`,{params: httpParams});
   }
 
   public listContracts(): Observable<Contract[]> {

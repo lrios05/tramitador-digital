@@ -9,12 +9,16 @@ import { Business } from '../../../models/business/business';
 })
 export class CompanyService {
 
-  businessURL = 'http://localhost:8080/api/business/';
+  private businessURL = 'http://localhost:8080/api/business/';
 
   constructor(private httpClient: HttpClient) { }
 
   public findBusiness(id: number): Observable<Business> {
     return this.httpClient.get<Business>(this.businessURL + `find/${id}`);
+  }
+
+  public findByCustomerId(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.businessURL}/findcustomer/${id}`);
   }
 
   public listBusiness(): Observable<Business[]> {

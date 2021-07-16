@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../../services/token.service';
 import { ContractService } from '../../../service-transactions/contract/contract.service';
 
+import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-infectius',
@@ -16,7 +18,7 @@ export class InfectiusComponent implements OnInit {
   constructor(private contractService: ContractService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    this.getContract();
+    //this.getContract();
   }
 
   getContract(){

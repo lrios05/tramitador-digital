@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
 
@@ -28,7 +28,10 @@ import { PaymentFrequencyComponent } from './service-transactions/payment-freque
 import { GatherFrequencyComponent } from './service-transactions/gather-frequency/gather-frequency.component';
 import { InfectiusComponent } from './templates/direct/infectius/infectius.component';
 import { SolidsComponent } from './templates/direct/solids/solids.component';
-
+import { FileComponent } from './updown/file.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { DataReviewComponent } from './evaluation/data-review/data-review.component';
+import { ObservationComponent } from './evaluation/observation/observation.component';
 
 
 @NgModule({
@@ -54,7 +57,11 @@ import { SolidsComponent } from './templates/direct/solids/solids.component';
     PaymentFrequencyComponent,
     GatherFrequencyComponent,
     InfectiusComponent,
-    SolidsComponent
+    SolidsComponent,
+    FileComponent,
+    EvaluationComponent,
+    DataReviewComponent,
+    ObservationComponent
   ], 
   imports: [
     CommonModule,
@@ -62,7 +69,8 @@ import { SolidsComponent } from './templates/direct/solids/solids.component';
     HttpClientModule,
     AppMaterialModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ModulesModule { }

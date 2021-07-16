@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MatListModule } from '@angular/material/list';
     MatNativeDateModule,
     MatTableModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   exports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { MatListModule } from '@angular/material/list';
     MatNativeDateModule,
     MatTableModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ]
 })
 
