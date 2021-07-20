@@ -13,12 +13,11 @@ export class ContractService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public findContract(id: string): Observable<Contract> {
+  public findContract(id: number): Observable<Contract> {
     return this.httpClient.get<Contract>(this.contractURL + `find/${id}`);
   }
 
   public findByCodeAndStatus(httpParams: HttpParams): Observable<any> {
-    console.log("LLEGA AL SERVICIO DE CONTRATOS");
     return this.httpClient.get<any>(`${this.contractURL}find/`,{params: httpParams});
   }
 

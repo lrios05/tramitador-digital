@@ -1,0 +1,28 @@
+mat-card {
+    max-width: 70%;
+    margin: 0.2rem auto;
+    text-align: center;
+    background-color: rgb(60, 60, 93);
+}
+
+.mat-form-field{
+    padding: 0 10px;
+    margin-top: 1rem;
+}
+
+.inner-container {
+    height: 450px;
+    overflow: auto;
+    margin: auto;
+    width: 90%;
+}
+
+table {
+    width: 100%;
+}
+
+th.mat-header-cell {
+    font-size: 15px;
+    color: #29293d;
+    background-color: rgb(163, 163, 194);
+  }

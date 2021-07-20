@@ -1,3 +1,34 @@
+<!--mat-toolbar color="accent">
+    <button mat-icon-button matTooltip="Application Menu">
+        <mat-icon>settings</mat-icon>
+    </button>
+    Account Settings
+    <span style="flex: 1 1 auto;"></span>
+    <div>
+        <button mat-icon-button matTooltip="Switch Apps">
+            <mat-icon>apps</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Notifications">
+            <mat-icon>notifications</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="accountMenu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #accountMenu [overlapTrigger]="false" yPosition="below">
+            <button mat-menu-item routerLink="#">
+                <mat-icon>person</mat-icon><span>My Account</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>help</mat-icon><span>Help</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>Logout
+            </button>
+        </mat-menu>
+    </div>
+</mat-toolbar-->
+
 <mat-toolbar>
     <mat-toolbar-row class="justify-content-between">
         <div class="logo py-4">
@@ -31,13 +62,6 @@
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
-
-<!--header fxLayoutAlign="space-between center">
-    <div>LOGO</div>
-    <div fxLayout="row" fxLayoutGap="20px">
-
-    </div>
-</header-->
 
 <!--header fxLayoutAlign="space-between center">
     <div>LOGO</div>

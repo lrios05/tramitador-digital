@@ -14,6 +14,10 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public findUser(email: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.authURL}user/find/${email}`);
+  }
+
   public login(userLogin: UserLogin): Observable<JwtDto> {
     return this.httpClient.post<JwtDto>(this.authURL + 'login', userLogin);
   }

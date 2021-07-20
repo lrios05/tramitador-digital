@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="inner-container  mat-elevation-z3">
+    <div class="inner-container  mat-elevation-z2">
         <section id="customer">
             <div class="title-bar">
                 <h3>Información del representante legal</h3>
@@ -8,7 +8,7 @@
                 <table>
                     <tr>
                         <td>
-                            <span class="subtitle">Cedula de identidad:</span> 4455667 CB
+                            <span class="subtitle">Código cliente:</span> {{ customerDetails['customerDto']['customerCode'] }}
                         </td>
                         <td>
                             -
@@ -16,17 +16,18 @@
                     </tr>
                     <tr>
                         <td>
-                            <span class="subtitle">Nombre completo:</span> Lindomar Castillos
+                            <span class="subtitle">Cedula de identidad:</span> {{ customerDetails['customerDto']['dni'] }}
                         <td>
-                            -
+                            <span class="subtitle">Nombre completo:</span> 
+                            {{ customerDetails['customerDto']['name'] +' '+ customerDetails['customerDto']['paternal'] +' '+ customerDetails['customerDto']['maternal']  }}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="subtitle">Teléfono mobil:</span> 72255667
+                            <span class="subtitle">Teléfono mobil:</span> {{ customerDetails['customerDto']['mobile'] }}
                         </td>
                         <td>
-                            <span class="subtitle">Correo electrónico:</span> castillos@email.com
+                            <span class="subtitle">Correo electrónico:</span> {{ customerDetails['customerDto']['email'] }}
                         </td>
                     </tr>
                 </table>
@@ -40,7 +41,7 @@
                 <table>
                     <tr>
                         <td>
-                            <span class="subtitle">Código cliente:</span> 1001-2021
+                            <span class="subtitle">Sociedad comercial:</span> {{ customerDetails['businessTypeDto']['description'] }}
                         </td>
                         <td>
                             -
@@ -48,32 +49,32 @@
                     </tr>
                     <tr>
                         <td>
-                            <span class="subtitle">Nro. NIT:</span> 12345678
+                            <span class="subtitle">Nro. NIT:</span> {{ customerDetails['nit'] }}
                         </td>
                         <td>
-                            <span class="subtitle">Razón social</span> Clinica de los heridos
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="subtitle">Rubro:</span> Salud
-                        </td>
-                        <td>
-                            <span class="subtitle">Actividad comercial:</span> Hospitales y centros de salud
+                            <span class="subtitle">Razón social</span> {{ customerDetails['name'] }}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="subtitle">Teléfono de oficina:</span> 4-123456
+                            <span class="subtitle">Rubro:</span> {{ customerDetails['activityDto']['activityGroupDto']['activityGroup'] }}
                         </td>
                         <td>
-                            <span class="subtitle">Correo corporativo:</span> castillos@email.com
+                            <span class="subtitle">Actividad comercial:</span> {{ customerDetails['activityDto']['activity'] }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="subtitle">Teléfono de oficina:</span> {{ customerDetails['phone'] }}
+                        </td>
+                        <td>
+                            <span class="subtitle">Correo corporativo:</span> {{ customerDetails['email'] }}
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div>
-                                <span class="subtitle">Oficina central:</span> Av. de los sanatorios # 1234
+                                <span class="subtitle">Oficina central:</span> {{ customerDetails['address'] }}
                             </div>
                         </td>
                         <td>
@@ -112,7 +113,7 @@
             </div>
         <!-- Tabla de Observaciones-->
         <div style=" margin: auto; width: 80%">
-            <table mat-table [dataSource]="ds" class="mat-elevation-z2" #tabla1 style="width: 100%;margin-bottom: 1rem;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" #tabla1 style="width: 100%;margin-bottom: 1rem;">
               <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> Nro. </th>
                 <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>

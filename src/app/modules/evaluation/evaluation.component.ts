@@ -1,18 +1,14 @@
 import { HttpParams } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
-import { status } from '../../core/constants/status';
+import { Status } from '../../core/constants/status';
 import { SelectOption } from '../../shared/ui-elements/SelectOption';
 import { ContractService } from '../service-transactions/contract/contract.service';
+import { CompanyService } from '../service-transactions/company/company.service';
 import { IEvaluation } from '../../core/interfaces/ievaluation';
 
-const EVALUATION_DATA: IEvaluation[] = [
-  {position: 1, date: '01/07/2021', contract: '1001-2021', customer: 'Restaurant El Pollo Gordo', status: 'Pendiente'},
-  {position: 2, date: '03/07/2021', contract: '1003-2021', customer: 'Clínica de los heridos', status: 'Pendiente'},
-  {position: 3, date: '05/07/2021', contract: '1005-2021', customer: 'Servicios de aseo urbano', status: 'Pendiente'},
-  {position: 4, date: '01/07/2021', contract: '1001-2021', customer: 'Restaurant El Pollo Gordo', status: 'Aprobado'}
-];
 
 @Component({
   selector: 'app-evaluation',
@@ -21,14 +17,25 @@ const EVALUATION_DATA: IEvaluation[] = [
 })
 export class EvaluationComponent implements OnInit {
 
-  contractStatus: SelectOption[] = status;
+  contractStatus: SelectOption[] = Status;
   contractDetails = [];
   displayedColumns: string[] = ['position', 'date', 'contract', 'customer', 'status'];
-  dataSource = EVALUATION_DATA;
+  dataTable: IEvaluation[] = [];
 
-  constructor(private formBuilder: FormBuilder, private contractService: ContractService) { }
+  dataSource = new MatTableDataSource<IEvaluation>(this.dataTable);
+
+  @ViewChild(MatTable) tabla1: MatTable<IEvaluation> | undefined;
+
+  customerBusiness: any;
+  //customerId: number = 0;
+  customerName: string = '';
+
+  constructor(private formBuilder: FormBuilder,
+    private contractService: ContractService,
+    private companyService: CompanyService) { }
 
   ngOnInit(): void {
+    this.getDefaultList();
   }
 
   searchForm = this.formBuilder.group({
@@ -36,21 +43,57 @@ export class EvaluationComponent implements OnInit {
     status: ''
   });
 
-  onSearch(){
+  onSearch() {
+    this.dataTable = [];
     let httpParams = new HttpParams();
     httpParams = httpParams.set('code', this.searchForm.get('code')?.value);
     httpParams = httpParams.set('status', this.searchForm.get('status')?.value);
-    
-    this.contractService.findByCodeAndStatus(httpParams).subscribe(
+
+    this.getSearchList(httpParams);
+  }
+
+  private getDefaultList() {
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('code', '');
+    httpParams = httpParams.set('status', 'Pendiente');
+
+    this.getSearchList(httpParams);
+  }
+
+  private getSearchList(params: HttpParams): void {
+    this.contractService.findByCodeAndStatus(params).subscribe(
       data => {
         let res: any = data;
         this.contractDetails = res.payload;
-        console.log(this.contractDetails);
+        this.getCustomerBusiness();
       }, err => {
         console.log(err);
       }
     );
   }
 
+  private getCustomerBusiness(): void {
+  
+    this.contractDetails.map(contract => {
+      let customerId = contract['customerDto']['customerId'];
 
+      this.companyService.findByCustomerId(customerId).subscribe(
+        (data: any) => {
+          this.customerBusiness = data.payload;
+          console.log(this.customerBusiness);
+          this.customerName = this.customerBusiness['name'];
+
+          this.dataTable.push({
+            position: customerId,
+            date: contract['initDate'],
+            contract: contract['contractCode'],
+            customer: this.customerName,
+            status: contract['status']
+          });
+          this.dataSource = new MatTableDataSource<IEvaluation>(this.dataTable);
+          this.tabla1?.renderRows();
+        }
+      );
+    });
+  }
 }

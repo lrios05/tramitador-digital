@@ -1,17 +1,17 @@
 mat-card {
     max-width: 70%;
-    margin: .5em auto;
+    margin: 1rem auto;
     text-align: center;
 }
 
 .mid-width {
-    width: 45%;
+    width: 50%;
     padding-left: 15px;
     padding-right: 15px;
 }
 
 .quart-width {
-    width: 22%;
+    width: 25%;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -23,11 +23,28 @@ mat-card {
 }
 
 .full-width {
-    width: 100%;
+    width: 95%;
 }
 
 .row-divider {
     width: 50%; 
     padding-top: 10px; 
     padding-bottom: 30px;
+}
+
+.mat-card-header{
+    color: #d1d1e0;
+    background-color: rgb(60, 60, 93);
+    padding: 0.3rem;
+}
+
+.sub-title{
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    color: #d1d1e0;
+    background-color: rgb(60, 60, 93);
+    padding-top: 3px;
+    padding-left: 1.3rem;
+    height: 40px;
 }

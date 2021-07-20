@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -16,8 +17,8 @@ import { ObservationComponent } from '../observation/observation.component';
 })
 export class DataReviewComponent implements OnInit {
 
-  customerDetails = {};
-  clientId: number = 1;
+  customerDetails: any;
+  clientId: any;
 
   displayedColumns: string[] = ['position', 'observation', 'delete'];
 
@@ -25,16 +26,34 @@ export class DataReviewComponent implements OnInit {
     new Observation('Adjuntar documentos contrato firmado')
   ];
 
-  ds = new MatTableDataSource<Observation>(this.datos);
+  dataSource = new MatTableDataSource<Observation>(this.datos);
 
   @ViewChild(MatTable) tabla1: MatTable<Observation> | undefined;
 
-  constructor(private clientService: ClientService, 
+  constructor(private activeRoute: ActivatedRoute,
+              private clientService: ClientService, 
               private companyService: CompanyService, 
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.activeRoute.paramMap.subscribe(
+      param => {
+        this.clientId = param.get('id');
+        this.getCustomerData(this.clientId);
+      }
+    );
   }
+
+  private getCustomerData(clientId: number) {
+    this.companyService.findByCustomerId(clientId).subscribe(
+      data => {
+        let res = data;
+        this.customerDetails = res.payload;
+        console.log(this.customerDetails);
+      }
+    );
+  }
+
 
   openDialog(){
     const dialogForm = this.dialog.open(ObservationComponent, {
@@ -60,16 +79,6 @@ export class DataReviewComponent implements OnInit {
       this.datos.splice(cod, 1);
       this.tabla1?.renderRows();
     //}
-  }
-
-  getCustomerData() {
-    this.companyService.findByCustomerId(this.clientId).subscribe(
-      data => {
-        let res = data;
-        this.customerDetails = res.payload;
-        console.log(this.customerDetails);
-      }
-    );
   }
 
 }

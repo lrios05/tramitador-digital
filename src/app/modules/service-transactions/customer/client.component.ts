@@ -20,7 +20,6 @@ export class ClientComponent implements OnInit {
   client?: Client;
   
   constructor(private formBuilder: FormBuilder, 
-              private router: Router, 
               private tokenService: TokenService,
               private clientService: ClientService) {
    }

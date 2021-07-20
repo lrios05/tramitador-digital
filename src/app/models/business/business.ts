@@ -1,7 +1,7 @@
 export class Business {
 
     nit: string;
-    name: string;
+    public name: string;
     mobile: string;
     phone: string;
     email: string;

@@ -6,6 +6,7 @@ const AUTHORITIES_KEY = 'AuthAutorities';
 const CUSTOMER_KEY = 'CustomerId';
 const BUSINESS_KEY = 'BusinessId';
 const CONTRACT_KEY = 'ContractId';
+const NOTE_KEY = 'NoteId';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,15 @@ export class TokenService {
 
   public getContract() {
     return sessionStorage.getItem(CONTRACT_KEY);
+  }
+
+  public setNote(noteId: string): void {
+    window.sessionStorage.removeItem(NOTE_KEY);
+    window.sessionStorage.setItem(NOTE_KEY, noteId);
+  }
+
+  public getNote() {
+    return sessionStorage.getItem(NOTE_KEY);
   }
 
   public logOut(): void {

@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import {map} from 'rxjs/operators';
+
 import { Business } from '../../../models/business/business';
+import { IBusiness } from 'src/app/core/interfaces/ibusiness';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +19,16 @@ export class CompanyService {
   public findBusiness(id: number): Observable<Business> {
     return this.httpClient.get<Business>(this.businessURL + `find/${id}`);
   }
+/*
+  public findByCustomerId(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.businessURL}findcustomer/${id}`);
+  }
+*/
 
   public findByCustomerId(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.businessURL}/findcustomer/${id}`);
+    return this.httpClient.get(`${this.businessURL}findcustomer/${id}`).pipe(map((res: any) => res));
   }
+
 
   public listBusiness(): Observable<Business[]> {
     return this.httpClient.get<Business[]>(this.businessURL + 'list');

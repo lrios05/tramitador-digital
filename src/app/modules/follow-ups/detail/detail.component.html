@@ -1,0 +1,82 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Reenvío del tramite</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="detailForm" (ngSubmit)="onRegister()">
+                <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Prioridad del tramite</mat-label>
+                        <mat-select formControlName="priority" placeholder="Seleccionar tipo de prioridad">
+                            <mat-option *ngFor="let item of priorities" [value]="item.value">
+                                {{ item.display }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="detailForm.controls['priority'].invalid">
+                            Seleccione prioridad del trámite
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="quart-width">
+                        <mat-label>Nro. de días</mat-label>
+                        <input matInput formControlName="days" (keyup)="dayEventHandler($event)" placeholder="Ingrese plazo de días" maxlength="5">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="quart-width">
+                        <mat-label>Fecha límite</mat-label>
+                        <input matInput formControlName="deadLine" [matDatepicker]="picker3">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Instrucción</mat-label>
+                        <mat-select formControlName="idInstruction" placeholder="Seleccionar tipo de instrucción">
+                            <mat-option *ngFor="let type of instructionList" [value]="type.instructionId">
+                                {{ type.instruction }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="detailForm.controls['idInstruction'].invalid">
+                            Seleccione tipo de instrucción
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Comentario</mat-label>
+                        <input matInput formControlName="comment" placeholder="Ingrese comentario del instructivo" maxlength="100">
+                        <mat-error *ngIf="detailForm.controls['comment'].invalid">
+                            Ingrese comentario para aclarar la instrucción
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Cargo/Role</mat-label>
+                        <mat-select (selectionChange)="roleEventHandler($event.value)" placeholder="Seleccionar rol">
+                            <mat-option *ngFor="let role of roles" [value]="role.value">
+                                {{ role.display }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="detailForm.controls['toUserId'].invalid">
+                            Seleccione rol de destino
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Usuario responsable</mat-label>
+                        <mat-select (selectionChange)="userEventHandler($event.value)" placeholder="Seleccionar usuario">
+                            <mat-option *ngFor="let user of userList" [value]="user.userId">
+                                {{ user.fullname }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="detailForm.controls['toUserId'].invalid">
+                            Seleccione destinatario
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions>
+                    <button type="submit" mat-raised-button color="primary">Reenviar nota</button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

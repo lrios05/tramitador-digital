@@ -32,6 +32,11 @@ import { FileComponent } from './updown/file.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { DataReviewComponent } from './evaluation/data-review/data-review.component';
 import { ObservationComponent } from './evaluation/observation/observation.component';
+import { NoteComponent } from './follow-ups/note/note.component';
+import { DetailComponent } from './follow-ups/detail/detail.component';
+import { ReviewComponent } from './follow-ups/review/review.component';
+import { InstructionComponent } from './follow-ups/instruction/instruction.component';
+import { CheckoutComponent } from './follow-ups/checkout/checkout.component';
 
 
 @NgModule({
@@ -61,7 +66,12 @@ import { ObservationComponent } from './evaluation/observation/observation.compo
     FileComponent,
     EvaluationComponent,
     DataReviewComponent,
-    ObservationComponent
+    ObservationComponent,
+    NoteComponent,
+    DetailComponent,
+    ReviewComponent,
+    InstructionComponent,
+    CheckoutComponent
   ], 
   imports: [
     CommonModule,
