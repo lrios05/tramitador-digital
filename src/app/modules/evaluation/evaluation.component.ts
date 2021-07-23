@@ -31,8 +31,8 @@ export class EvaluationComponent implements OnInit {
   customerName: string = '';
 
   constructor(private formBuilder: FormBuilder,
-    private contractService: ContractService,
-    private companyService: CompanyService) { }
+              private contractService: ContractService,
+              private companyService: CompanyService) { }
 
   ngOnInit(): void {
     this.getDefaultList();

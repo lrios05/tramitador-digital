@@ -8,13 +8,31 @@ import { DetailComponent } from '../../modules/follow-ups/detail/detail.componen
 import { ReviewComponent } from '../../modules/follow-ups/review/review.component';
 import { EvaluationComponent } from '../../modules/evaluation/evaluation.component';
 import { CheckoutComponent } from '../../modules/follow-ups/checkout/checkout.component';
+import { LoginComponent } from '../../modules/auth/login/login.component';
+import { RegisterComponent } from '../../modules/auth/register/register.component';
+import { ServiceTransactionsComponent } from '../../modules/service-transactions/service-transactions.component';
+import { FileComponent } from '../../modules/updown/file.component';
+
 
 const routes: Routes = [
   {
     path: '', component: DefaultComponent, 
+
     children: [
       {
         path: 'home', component: HomeComponent
+      },
+      {
+        path: 'account', component: RegisterComponent
+      },
+      {
+        path: 'login', component: LoginComponent
+      },
+      {
+        path: 'servicetransaction', component: ServiceTransactionsComponent
+      },
+      {
+        path: 'uploads', component: FileComponent
       },
       {
         path: 'review/:id', component: DataReviewComponent
@@ -26,13 +44,13 @@ const routes: Routes = [
         path: 'note', component: NoteComponent
       },
       {
-        path: 'forward', component: DetailComponent
+        path: 'forward/:id', component: DetailComponent
       },
       {
         path: 'notesearch', component: ReviewComponent
       },
       {
-        path: 'checkout/:id', component: CheckoutComponent
+        path: 'checkout/:id/:action', component: CheckoutComponent
       }
     ] 
   }

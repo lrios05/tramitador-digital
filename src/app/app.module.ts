@@ -8,8 +8,8 @@ import { DefaultModule } from './layout/default/default.module';
 import { LoginViewModule } from './layout/auth-views/login-view/login-view.module';
 import { RegisterViewModule } from './layout/auth-views/register-view/register-view.module';
 import { CustomerviewModule } from './layout/customerview/customerview.module';
-import { ServiceTransactionsViewsModule } from './layout/service-transactions-views/service-transactions-views.module';
-import { EvaluationModule } from './layout/evaluation-views/evaluation.module';
+//import { ServiceTransactionsViewsModule } from './layout/service-transactions-views/service-transactions-views.module';
+//import { EvaluationModule } from './layout/evaluation-views/evaluation.module';
 
 
 @NgModule({
@@ -23,9 +23,7 @@ import { EvaluationModule } from './layout/evaluation-views/evaluation.module';
     DefaultModule,
     LoginViewModule,
     RegisterViewModule,
-    CustomerviewModule,
-    ServiceTransactionsViewsModule,
-    EvaluationModule
+    CustomerviewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,8 +21,6 @@ export class ClientService {
   }
 
   public signup(usrEmail: string, client: Client): Observable<any>{
-    console.log(usrEmail);
-
     return this.httpClient.post<any>(this.customerURL + `customer/signup/${usrEmail}`, client);
   }
 }

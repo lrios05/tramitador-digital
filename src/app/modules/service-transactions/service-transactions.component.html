@@ -13,7 +13,7 @@
                 </div>
                 <div *ngIf="!dataLoading" style="margin-right:10px">
                     <!--mat-vertical-stepper #stepper-->
-                    <mat-vertical-stepper #stepper (selectionChange)="onStepChange($event)" class="box-container">
+                    <mat-horizontal-stepper #stepper (selectionChange)="onStepChange($event)" class="box-container">
                         <mat-step label="Datos del Cliente">
                             <app-client></app-client>
                             <div class="stepper-navigation">
@@ -58,7 +58,7 @@
                             </div>
                         </mat-step>
 
-                    </mat-vertical-stepper>
+                    </mat-horizontal-stepper>
                 </div>
             </div>
         </div>

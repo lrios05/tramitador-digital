@@ -5,31 +5,35 @@
 }
 
 #customer{
+    width: 95%;
     padding-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 #business{
+    width: 95%;
     padding-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 #documents{
+    width: 95%;
     padding-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 #observations {
+    width: 95%;
     padding-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 .title-bar{
-    background: lightgray;
+    background-color: rgb(240, 240, 245);;
     height: 36px;
 }
 
@@ -63,4 +67,8 @@ tr {
 
 button{
     margin: 5px;
+}
+
+.mat-list-base.inline-list {
+    display: flex;
 }

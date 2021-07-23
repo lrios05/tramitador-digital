@@ -21,6 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatMenuModule,
     MatListModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule
   ],
   exports: [
     CommonModule,
@@ -69,7 +71,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatMenuModule,
     MatListModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule
   ]
 })
 

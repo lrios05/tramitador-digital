@@ -4,7 +4,7 @@
             <mat-card-title>Reenvío del tramite</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form [formGroup]="detailForm" (ngSubmit)="onRegister()">
+            <form [formGroup]="detailForm" (ngSubmit)="onRegister()" id="forwardForm">
                 <div class="vertical-form-field">
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Prioridad del tramite</mat-label>
@@ -19,7 +19,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="standard" class="quart-width">
                         <mat-label>Nro. de días</mat-label>
-                        <input matInput formControlName="days" (keyup)="dayEventHandler($event)" placeholder="Ingrese plazo de días" maxlength="5">
+                        <input type="number" matInput formControlName="days" (keyup)="dayEventHandler($event)"
+                            placeholder="Ingrese plazo de días" maxlength="5">
                     </mat-form-field>
                     <mat-form-field appearance="standard" class="quart-width">
                         <mat-label>Fecha límite</mat-label>
@@ -32,18 +33,20 @@
                 <div class="vertical-form-field">
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Instrucción</mat-label>
-                        <mat-select formControlName="idInstruction" placeholder="Seleccionar tipo de instrucción">
+                        <mat-select formControlName="instructionId" (selectionChange)="instructionHandler($event)"
+                            placeholder="Seleccionar tipo de instrucción">
                             <mat-option *ngFor="let type of instructionList" [value]="type.instructionId">
                                 {{ type.instruction }}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="detailForm.controls['idInstruction'].invalid">
+                        <mat-error *ngIf="detailForm.controls['instructionId'].invalid">
                             Seleccione tipo de instrucción
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Comentario</mat-label>
-                        <input matInput formControlName="comment" placeholder="Ingrese comentario del instructivo" maxlength="100">
+                        <input matInput formControlName="comment" placeholder="Ingrese comentario del instructivo"
+                            maxlength="100">
                         <mat-error *ngIf="detailForm.controls['comment'].invalid">
                             Ingrese comentario para aclarar la instrucción
                         </mat-error>
@@ -52,9 +55,9 @@
                 <div class="vertical-form-field">
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Cargo/Role</mat-label>
-                        <mat-select (selectionChange)="roleEventHandler($event.value)" placeholder="Seleccionar rol">
-                            <mat-option *ngFor="let role of roles" [value]="role.value">
-                                {{ role.display }}
+                        <mat-select (selectionChange)="toRoleEventHandler($event)" placeholder="Seleccionar rol">
+                            <mat-option *ngFor="let roleUser of roles" [value]="roleUser.role">
+                                {{ roleUser.description }}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="detailForm.controls['toUserId'].invalid">
@@ -63,9 +66,10 @@
                     </mat-form-field>
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Usuario responsable</mat-label>
-                        <mat-select (selectionChange)="userEventHandler($event.value)" placeholder="Seleccionar usuario">
-                            <mat-option *ngFor="let user of userList" [value]="user.userId">
-                                {{ user.fullname }}
+                        <mat-select formControlName="toUserId" (selectionChange)="userEventHandler($event)"
+                            placeholder="Seleccionar usuario">
+                            <mat-option *ngFor="let user of roleUsers" [value]="user.userId">
+                                {{ user.userName }}
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="detailForm.controls['toUserId'].invalid">
@@ -74,9 +78,61 @@
                     </mat-form-field>
                 </div>
                 <mat-card-actions>
-                    <button type="submit" mat-raised-button color="primary">Reenviar nota</button>
+                    <button type="button" mat-stroked-button color="primary"
+                        (click)="addInstruction()">Insertar</button>
                 </mat-card-actions>
             </form>
+            <!-- Detail Section to forwarding instrutions -->
+            <section>
+                <div style="margin: auto; width: 100%">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" #tabla1
+                        style="width: 100%;margin-bottom: 1rem;">
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> Nro. </th>
+                            <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fromUser">
+                            <th mat-header-cell *matHeaderCellDef> De (Origen) </th>
+                            <td mat-cell *matCellDef="let item"> {{item.fromUser}}<br> {{item.fromRole}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="toUser">
+                            <th mat-header-cell *matHeaderCellDef> A (Destino) </th>
+                            <td mat-cell *matCellDef="let item"> {{item.toUser}}<br> {{item.toRole }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef> En fecha </th>
+                            <td mat-cell *matCellDef="let item"> {{ item.date | date:'short' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="instruction">
+                            <th mat-header-cell *matHeaderCellDef> Instructivo</th>
+                            <td mat-cell *matCellDef="let item"> {{item.instruction}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="delete">
+                            <th mat-header-cell *matHeaderCellDef> Quitar? </th>
+                            <td mat-cell *matCellDef="let j = index;">
+                                <button mat-icon-button color="warn" focusable="false" (click)="deleteInstruction(j)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+                    </table>
+                </div>
+            </section>
+
         </mat-card-content>
     </mat-card>
+
+    <div class="align-button">
+        <button type="submit" mat-raised-button color="primary" form="forwardForm" [disabled]="detailForm.invalid">
+            Reenviar nota
+        </button>
+    </div>
 </div>

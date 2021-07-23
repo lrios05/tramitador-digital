@@ -26,7 +26,8 @@ export class DetailService {
   }
 
   public createDetail(noteId: string, detail: Detail): Observable<any> {
-    return this.httpClient.post<any>(`${this.detailURL}create/${noteId}`, detail);
+    console.log(detail);
+    return this.httpClient.post<any>(`${this.detailURL}createdetail/${noteId}`, detail);
   }
 
 }

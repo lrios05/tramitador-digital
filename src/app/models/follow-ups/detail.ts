@@ -4,5 +4,5 @@ export class Detail {
         public priority: string,
         public fromUserId: number,
         public toUserId: number,
-        public idInstruction: number) {}
+        public instructionId: number) {}
 }

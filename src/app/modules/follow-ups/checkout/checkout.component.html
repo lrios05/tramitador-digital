@@ -1,34 +1,49 @@
 <div class="container">
     <div class="inner-container mat-elevation-z2">
-        <section id="note">
-            <table>
+        <div class="align-table">
+            <table id="table-header">
                 <tr>
-                    <td>
-                        <span>Aseo Urbano</span><br>Cochabamba-Bolivia
-                    </td>
-                    <td>
-                        <span></span>
+                    <td><span>Aseo Urbano</span><br>Cochabamba-Bolivia</td>
+                    <td colspan="2"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <h1 class="title">Trámite No. {{ noteHeader.sequence }}/{{ noteHeader.year }} </h1>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <span>Registro de Trámite No</span><br>Fecha de registro: 
-                    </td>
+                    <td colspan="2"></td>
+                    <td><span>Fecha de registro:</span></td>
+                    <td>{{ noteHeader.createdAt }}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <span>Solicitante: </span> Fulanito Perez Canqui
-                    </td>
+                    <td><span>Solicitante: </span></td>
+                    <td> {{ noteHeader.user }} </td>
+                    <td colspan="2"></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <span>Referencia: </span> Solicitud de aprobación de Contrato de servicios
+                    <td><span>Referencia: </span></td>
+                    <td>{{ noteHeader.subject }}</td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td><span>Documentos adjuntos: </span></td>
+                    <td colspan="3">
+                        <mat-nav-list fxLayout="row">
+                            <mat-list-item *ngFor="let doc of documents">
+                                <a matLine href="#">{{ doc.docName }}</a>
+                                <button mat-icon-button (click)="showDocument(doc.docName)">
+                                    <mat-icon>info</mat-icon>
+                                </button>
+                            </mat-list-item>
+                        </mat-nav-list>
                     </td>
                 </tr>
             </table>
-        </section>
-        <section id="details">
-            <table>
+        </div>
+        <div class="align-table">
+            <table id="table-detail">
                 <tr>
                     <th>De: Origen</th>
                     <th>A: Destino</th>
@@ -36,25 +51,19 @@
                     <th>Instructivo</th>
                     <th>Firmas</th>
                 </tr>
-                <tr >
-                    <td>Fulanito Perez C.<br>Cliente</td>
-                    <td>Jose Feliciano M.<br>Encargado de contratos</td>
-                    <td>01/07/2021 <br> 09:30</td>
-                    <td>Para su revision y aprobación</td>
-                    <td>Fulanit Perez C.<br>01/07/2021 - 09:30</td>
-                </tr>
-                <tr>
-                    <td>Jose Feliciano M.<br>Encargado de contratos</td>
-                    <td>Humberto Choquetopa A.<br>Jefe de servicio</td>
-                    <td>01/07/2021 <br> 09:30</td>
-                    <td>Para su aprobación y Firmas</td>
-                    <td>Jose Feliciano M..<br>01/07/2021 - 09:40</td>
+                <tr *ngFor="let detail of noteDetails">
+                    <td>{{ detail.fromUserDto.userName }} <br>Encargado de contratos</td>
+                    <td>{{ detail.toUserDto.userName }} <br>Jefe de servicio</td>
+                    <td>{{ detail.sendDate }} </td>
+                    <td>{{ detail.instruction }} ( {{ detail.comment }})</td>
+                    <td>{{ detail.fromUserDto.userName }} <br>{{ detail.sendDate }}</td>
                 </tr>
             </table>
-        </section>
+        </div>
     </div>
     <div class="align-button">
-        <a routerLink="/forward"><button mat-raised-button color="primary">Reenviar nota</button></a>
-        <button mat-raised-button >Finalizar trámite</button>
+        <a [routerLink]="['/home']"><button mat-raised-button color="primary" *ngIf="isPreview">Descargar PDF</button></a>
+        <a [routerLink]="['/forward', noteHeader.noteId ]"><button mat-raised-button color="primary" *ngIf="!isPreview">Reenviar nota</button></a>
+        <a [routerLink]="['/home']"><button mat-raised-button *ngIf="!isPreview">Finalizar trámite</button></a>
     </div>
 </div>

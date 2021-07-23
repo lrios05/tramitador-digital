@@ -1,9 +1,9 @@
 export interface INote {
     position: number;
-    date: string;
-    note: number,
+    date: Date;
+    noteCode: number,
     contract: string;
-    customer: string;
+    user: string;
     subject: string;
     status: string;
 }

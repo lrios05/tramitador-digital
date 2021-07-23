@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTable, MatTableDataSource} from '@angular/material/table';
 
 import { NoteService } from '../note/note.service';
 import { AuthService } from '../../auth/auth.service';
@@ -11,12 +12,6 @@ import { SelectOption } from '../../../shared/ui-elements/SelectOption';
 import { INote } from 'src/app/core/interfaces/inote';
 
 
-const FOLLOWUP_DATA: INote[] = [
-  {position: 1, date: '01/07/2021', note: 1, contract: '1001-2021', customer: 'Restaurant El Pollo Gordo', subject: 'Solicitud de aprobación de Contrato', status: 'Pendiente'},
-  {position: 2, date: '03/07/2021', note: 2, contract: '1003-2021', customer: 'Clínica de los heridos', subject: 'Solicitud de aprobación de Contrato', status: 'Pendiente'},
-  {position: 3, date: '01/07/2021', note: 3, contract: '1001-2021', customer: 'Restaurant El Pollo Gordo', subject: 'Solicitud de aprobación de Contrato', status: 'Aprobado'}
-];
-
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -26,8 +21,13 @@ export class ReviewComponent implements OnInit {
 
   noteStatus: SelectOption[] = Status;
   noteDetails = [];
-  tableColumns: string[] = ['position', 'date', 'note', 'contract', 'customer', 'subject', 'status'];
-  dataSource = FOLLOWUP_DATA;
+  tableColumns: string[] = ['position', 'date', 'note', 'contract', 'user', 'subject', 'status'];
+
+  dataTable: INote[] = [];
+
+  dataSource = new MatTableDataSource<INote>(this.dataTable);
+
+  @ViewChild(MatTable) tabla1: MatTable<INote> | undefined;
 
   constructor(private formBuilder: FormBuilder,
               private tokenService: TokenService,
@@ -36,12 +36,13 @@ export class ReviewComponent implements OnInit {
               private noteService: NoteService) { }
 
   ngOnInit(): void {
+    this.onSearch();
   }
 
   searchForm: FormGroup = this.formBuilder.group({
     contractCode: '',
-    noteCode: '',
-    status: ''
+    noteCode: 0,
+    status: 'Pendiente'
   });
 
   onSearch(){
@@ -50,15 +51,44 @@ export class ReviewComponent implements OnInit {
     params = params.set('noteCode', this.searchForm.get('noteCode')?.value);
     params = params.set('status', this.searchForm.get('status')?.value);
     
+    this.getResultList(params);
+  }
+
+  private getResultList(params: HttpParams): void {
     this.noteService.findNoteByParams(params).subscribe(
-      data => {
-        let res: any = data;
-        this.noteDetails = res.payload;
+      (data: any) => {
+        this.noteDetails = data.payload;
         console.log(this.noteDetails);
+        this.setDataTable();
       }, err => {
         console.log(err);
       }
     );
+  }
+
+  private setDataTable() {
+    if (this.noteDetails.length > 1) {
+      this.noteDetails.map(obj => {
+        this.loadDataTable(obj);
+      });
+    } else {
+      this.loadDataTable(this.noteDetails);
+    }
+  }
+
+  private loadDataTable(noteDetail: any){
+    this.dataTable.push({
+      position: noteDetail['noteId'],
+      date: new Date(),
+      noteCode: noteDetail['sequence'],
+      contract: noteDetail['contractDto']['contractCode'],
+      user: noteDetail['userDto']['fullName'],
+      subject: noteDetail['subject'],
+      status: noteDetail['status']
+    });
+
+    this.dataSource = new MatTableDataSource<INote>(this.dataTable);
+    this.tabla1?.renderRows();
   }
 
 }

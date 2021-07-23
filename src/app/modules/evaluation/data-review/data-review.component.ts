@@ -8,6 +8,7 @@ import { ClientService } from '../../service-transactions/customer/client.servic
 import { CompanyService } from '../../service-transactions/company/company.service';
 import { Observation } from 'src/app/core/interfaces/observation';
 import { ObservationComponent } from '../observation/observation.component';
+import { FileService } from '../../updown/file.service';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class DataReviewComponent implements OnInit {
 
   customerDetails: any;
   clientId: any;
+  contractAttache: any;
+  documents: any = [];
 
   displayedColumns: string[] = ['position', 'observation', 'delete'];
 
@@ -32,7 +35,8 @@ export class DataReviewComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,
               private clientService: ClientService, 
-              private companyService: CompanyService, 
+              private companyService: CompanyService,
+              private fileService: FileService,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -42,6 +46,7 @@ export class DataReviewComponent implements OnInit {
         this.getCustomerData(this.clientId);
       }
     );
+    this.getDocuments('2-2021');
   }
 
   private getCustomerData(clientId: number) {
@@ -54,6 +59,18 @@ export class DataReviewComponent implements OnInit {
     );
   }
 
+  getDocuments(contractId: string){
+    this.fileService.findByContractCode(contractId).subscribe(
+      (data: any) => {
+        this.contractAttache = data.payload;
+        this.documents = data.payload.documentDtoList;
+      }
+    );
+  }
+
+  showDocument(docName: string): void{
+    console.log(docName);
+  }
 
   openDialog(){
     const dialogForm = this.dialog.open(ObservationComponent, {

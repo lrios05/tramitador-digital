@@ -26,4 +26,7 @@ export class FileService {
     });
   }
 
+  public findByContractCode(code: string): Observable<any> {
+    return this.http.get<any>(`${this.uploadURL}/file/findbycontract/${code}`);
+  }
 }

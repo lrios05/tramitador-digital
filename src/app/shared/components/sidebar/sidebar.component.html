@@ -32,14 +32,14 @@
 <!--mat-sidenav-container style="height: calc(100% - 64px); margin: 0;"-->
     <mat-sidenav mode="side" opened style="width: 240px">
         <mat-nav-list dense>
-            <mat-list-item routerLink="/home"><mat-icon>home</mat-icon> Inicio</mat-list-item>
+            <mat-list-item routerLink="/login"><mat-icon>home</mat-icon> Inicio</mat-list-item>
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
                 <mat-expansion-panel-header>
                     <mat-icon>person</mat-icon> Usuarios
                 </mat-expansion-panel-header>
                 <mat-nav-list dense>
-                    <a mat-list-item routerLink="#"><mat-icon>person_add</mat-icon>Nuevo usuario</a>
-                    <a mat-list-item routerLink="#"><mat-icon>people_alt</mat-icon>Asignar role</a>
+                    <a mat-list-item routerLink="/account"><mat-icon>person_add</mat-icon>Nuevo usuario</a>
+                    <a mat-list-item routerLink="/role"><mat-icon>people_alt</mat-icon>Asignar role</a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
@@ -47,9 +47,9 @@
                     <mat-icon>snippet_folder</mat-icon> Trámites
                 </mat-expansion-panel-header>
                 <mat-nav-list dense>
-                    <a mat-list-item routerLink="/customer"><mat-icon>note_add</mat-icon> Registrar contrato</a>
-                    <a mat-list-item routerLink="#"><mat-icon>upload_file</mat-icon> Subir documentos</a>
-                    <a mat-list-item routerLink="/search"><mat-icon>manage_search</mat-icon> Evaluar contrato</a>
+                    <a mat-list-item routerLink="/servicetransaction"><mat-icon>note_add</mat-icon> Registrar contrato</a>
+                    <a mat-list-item routerLink="/uploads"><mat-icon>upload_file</mat-icon> Subir documentos</a>
+                    <a mat-list-item routerLink="/contractsearch"><mat-icon>manage_search</mat-icon> Evaluar contrato</a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense>

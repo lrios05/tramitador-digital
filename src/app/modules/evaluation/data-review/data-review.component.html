@@ -92,16 +92,14 @@
                 <table>
                     <tr>
                         <td>
-                            <div><label><input type="checkbox" checked> Contrato</label></div>
-                        </td>
-                        <td>
-                            <div><label><input type="checkbox" checked> Copia de Carnet</label></div>
-                        </td>
-                        <td>
-                            <div><label><input type="checkbox" checked> Copia de NIT</label></div>
-                        </td>
-                        <td>
-                            <div><label><input type="checkbox" checked> Copia de depósito</label></div>
+                            <mat-nav-list fxLayout="row">
+                                <mat-list-item *ngFor="let doc of documents">
+                                    <a matLine href="#">{{ doc.docName }}</a>
+                                    <button mat-icon-button (click)="showDocument(doc.docName)">
+                                        <mat-icon>info</mat-icon>
+                                    </button>
+                                </mat-list-item>
+                            </mat-nav-list>
                         </td>
                     </tr>
                 </table>

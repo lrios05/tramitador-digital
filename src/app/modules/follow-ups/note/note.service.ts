@@ -13,8 +13,12 @@ export class NoteService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public findNote(id: number): Observable<NoteDetail> {
-    return this.httpClient.get<NoteDetail>(`${this.noteURL}find/${id}`);
+  public findNote(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.noteURL}find/${id}`);
+  }
+
+  public findByNoteId(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.noteURL}findbynote/${id}`);
   }
 
   public findByContractId(id: number): Observable<NoteDetail> {
@@ -41,7 +45,7 @@ export class NoteService {
     return this.httpClient.get<NoteDetail[]>(`${this.noteURL}list`);
   }
 
-  public createNote(contractId: number, note: NoteDetail): Observable<any> {
+  public createNote(contractId: string, note: NoteDetail): Observable<any> {
     return this.httpClient.post<any>(`${this.noteURL}create/${contractId}`, note);
   }
 }
