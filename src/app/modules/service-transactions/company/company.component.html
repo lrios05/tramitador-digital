@@ -1,10 +1,14 @@
 <mat-card>
+    <mat-card-header>
+        Datos de la actividad económica del cliente
+    </mat-card-header>
     <mat-card-content>
         <form [formGroup]="companyForm" (ngSubmit)="onRegister()">
             <div class="vertical-form-field">
                 <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>No. Nit</mat-label>
-                    <input matInput formControlName="nit" placeholder="Ingrese No. NIT" maxlength="12">
+                    <input matInput formControlName="nit" placeholder="Ingrese No. NIT" #nit maxlength="12">
+                    <mat-hint align="end">{{nit.value.length}} / 12</mat-hint>
                     <mat-error *ngIf="companyForm.controls['nit'].invalid">
                         Ingrese un No. de NIT válido
                     </mat-error>
@@ -26,8 +30,8 @@
             <div class="vertical-form-field">
                 <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Nombre de la empresa</mat-label>
-                    <input matInput formControlName="name" placeholder="Ingrese nombre de la empresa"
-                        maxlength="100">
+                    <input matInput formControlName="name" placeholder="Ingrese nombre de la empresa" #company maxlength="70">
+                    <mat-hint align="end">{{company.value.length}} / 70</mat-hint>
                     <mat-error *ngIf="companyForm.controls['name'].invalid">
                         Ingrese un nombre de empresa válido
                     </mat-error>
@@ -35,7 +39,7 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" class="full-width">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>Rubro de la empresa</mat-label>
                     <mat-select formControlName="groupId" (selectionChange)="activityHandler($event.value)" placeholder="Seleccionar tipo de rubro">
                         <mat-option *ngFor="let group of activityGroups" [value]="group.groupId">
@@ -46,10 +50,7 @@
                         Seleccione tipo de rubro de la empresa
                     </mat-error>
                 </mat-form-field>
-            </div>
-
-            <div class="vertical-form-field">
-                <mat-form-field appearance="standard" class="full-width">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>Actividad comercial</mat-label>
                     <mat-select formControlName="activityId" placeholder="Seleccionar actividad comercial">
                         <mat-option *ngFor="let activity of activities" [value]="activity.activityId">
@@ -63,25 +64,21 @@
             </div>
 
             <div class="vertical-form-field">
-                <mat-form-field appearance="standard" class="mid-width">
+                <mat-form-field appearance="standard" class="quart-width">
                     <mat-label>No. celular corporativo</mat-label>
                     <input matInput formControlName="mobile" placeholder="Ingrese No. celular corporativo" maxlength="12">
                     <mat-error *ngIf="companyForm.controls['mobile'].invalid">
                         Ingrese No. de celular válido
                     </mat-error>
                 </mat-form-field>
-
-                <mat-form-field appearance="standard" class="mid-width">
+                <mat-form-field appearance="standard" class="quart-width">
                     <mat-label>No. teléfono de oficina</mat-label>
                     <input matInput formControlName="phone" placeholder="Ingrese No. de teléfono de la empresa" maxlength="8">
                     <mat-error *ngIf="companyForm.controls['phone'].invalid">
                         Ingrese No. de teléfono válido
                     </mat-error>
                 </mat-form-field>
-            </div>
-
-            <div class="vertical-form-field">
-                <mat-form-field appearance="standard" class="full-width">
+                <mat-form-field appearance="standard" class="mid-width">
                     <mat-label>Correo electrónico</mat-label>
                     <input matInput formControlName="email" placeholder="Ingrese su correo electrónico" maxlength="30">
                     <mat-error *ngIf="companyForm.controls['email'].invalid">
@@ -93,8 +90,8 @@
             <div class="vertical-form-field">
                 <mat-form-field appearance="standard" class="full-width">
                     <mat-label>Dirección de la empresa</mat-label>
-                    <input matInput formControlName="address" placeholder="Ingrese la dirección de la empresa"
-                        maxlength="150">
+                    <input matInput formControlName="address" placeholder="Ingrese la dirección de la empresa" #companyAddress maxlength="100">
+                    <mat-hint align="end">{{companyAddress.value.length}} / 100</mat-hint>
                     <mat-error *ngIf="companyForm.controls['address'].invalid">
                         Ingrese una dirección de empresa válida
                     </mat-error>
@@ -115,13 +112,13 @@
                 <fieldset class="full-width">
                     <legend>Declaración jurada</legend>
                     <div>
-                        <mat-checkbox class="no-label-field">
+                        <mat-checkbox class="no-label-field" formControlName="confirmation">
                             Yo declaro que los datos ingresados son verdaderos y acepto los términos y condiciones para <br> proceder con este trámite.
                         </mat-checkbox>
                     </div>
                 </fieldset>
             </div>
-            <button type="submit" mat-raised-button color="primary">Registrar</button>
+            <!--button type="submit" mat-raised-button color="primary">Registrar</button-->
         </form>
     </mat-card-content>
 </mat-card>

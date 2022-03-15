@@ -22,7 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -48,7 +48,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatDialogModule,
     MatSidenavModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ],
   exports: [
     CommonModule,
@@ -72,7 +73,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatDialogModule,
     MatSidenavModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ]
 })
 

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
-import { sources } from '../../../core/constants/source';
-import { SelectOption } from '../../../shared/ui-elements/SelectOption';
 import { Client } from '../../../models/customer/client';
 import { ClientService } from './client.service';
 import { TokenService } from '../../../services/token.service';
+import { CityService } from '../../service-transactions/city/city.service';
+import { DniCity } from '../../../models/customer/dni-city';
 
 @Component({
   selector: 'app-client',
@@ -15,16 +14,18 @@ import { TokenService } from '../../../services/token.service';
 })
 export class ClientComponent implements OnInit {
 
-  identificationSources: SelectOption[] = sources;
-
   client?: Client;
+  cities?: DniCity[];
+  confirmationChecked: boolean = false;
   
   constructor(private formBuilder: FormBuilder, 
               private tokenService: TokenService,
-              private clientService: ClientService) {
+              private clientService: ClientService,
+              private cityService: CityService) {
    }
 
   ngOnInit(): void {
+    this.loadDniCities();
   }
 
   clientForm: FormGroup = this.formBuilder.group({
@@ -33,10 +34,11 @@ export class ClientComponent implements OnInit {
     'name': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'paternal': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'maternal': [''],
-    'mobile': ['591-', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+    'mobile': ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     'phone': ['', [Validators.pattern(/^[0-9]+$/)]],
     'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-    'address': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]]
+    'address': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]],
+    'confirmation': [false, Validators.requiredTrue]
   });
 
   onRegister() {
@@ -54,7 +56,6 @@ export class ClientComponent implements OnInit {
   }
 
   private formToClient(){
-    
     this.client = new Client(this.clientForm.get('dni')?.value,
                         this.clientForm.get('originDni')?.value,
                         this.clientForm.get('name')?.value,
@@ -66,6 +67,23 @@ export class ClientComponent implements OnInit {
                         this.clientForm.get('address')?.value
                         );
     console.log(this.client);
+  }
+
+  private loadDniCities() {
+    this.cityService.listCities().subscribe(
+      data => {
+        let res: any = data;
+        this.cities = res.payload;
+      }
+    );
+  }
+
+  isChecked(ev: any) {
+    if (ev.checked) {
+      this.confirmationChecked = true;
+    } else {
+      this.confirmationChecked = false;
+    }
   }
 
 }

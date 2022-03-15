@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Registro de trámites</mat-card-title>
+            Registro de trámites
         </mat-card-header>
         <mat-card-content>
             <form [formGroup]="noteForm" (ngSubmit)="onRegister()">
@@ -34,7 +34,8 @@
                     <mat-form-field appearance="standard" class="full-width">
                         <mat-label>Referencia</mat-label>
                         <input matInput formControlName="subject" placeholder="Ingrese la referencia de la nota"
-                            maxlength="100">
+                            #subject maxlength="100">
+                            <mat-hint align="end">{{subject.value.length}} / 100</mat-hint>
                         <mat-error *ngIf="noteForm.controls['subject'].invalid">
                             Ingrese la referencia de la nota
                         </mat-error>
@@ -51,7 +52,7 @@
                         </div>
                     </div>
                     <mat-nav-list fxLayout="row">
-                        <mat-list-item *ngFor="let doc of documents">
+                        <mat-list-item *ngFor="let doc of documents"  style="height: 25px;">
                             <a matLine href="#">{{ doc.docName }}</a>
                             <button mat-icon-button (click)="showDocument(doc.docName)">
                                 <mat-icon>info</mat-icon>
@@ -105,7 +106,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Comentario</mat-label>
-                        <input matInput formControlName="comment" placeholder="Enfasis del instructivo" maxlength="100">
+                        <input matInput formControlName="comment" placeholder="Enfasis del instructivo" #comment maxlength="50">
+                        <mat-hint align="end">{{comment.value.length}} / 50</mat-hint>
                     </mat-form-field>
                 </div>
                 <div class="vertical-form-field">

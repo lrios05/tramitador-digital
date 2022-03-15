@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUserName';
 const AUTHORITIES_KEY = 'AuthAutorities';
+const USER_FULLNAME_KEY = 'UserFullName';
 const CUSTOMER_KEY = 'CustomerId';
 const BUSINESS_KEY = 'BusinessId';
 const CONTRACT_KEY = 'ContractId';
@@ -49,6 +50,15 @@ export class TokenService {
       });
     }
     return this.roles;
+  }
+
+  public setUserFullName(userFullName: string): void {
+    window.sessionStorage.removeItem(USER_FULLNAME_KEY);
+    window.sessionStorage.setItem(USER_FULLNAME_KEY, userFullName);
+  }
+
+  public getUserFullName() {
+    return sessionStorage.getItem(USER_FULLNAME_KEY);
   }
 
   public setCustomer(customerId: string): void {

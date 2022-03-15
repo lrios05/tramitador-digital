@@ -13,8 +13,11 @@ body {
     padding: 50px;
     position: relative;
     width: 80%;
+    height: 24%;
+    overflow-y: auto;
 }
 
+/*
 .paper:before, .paper:after{
     content: "";
     height: 98%;
@@ -38,6 +41,7 @@ body {
     top: 1px;
     transform: rotate(1.4deg);
 }
+*/
 
 .align-center {
     text-align: center;

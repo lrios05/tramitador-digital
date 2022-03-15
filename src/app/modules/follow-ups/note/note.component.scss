@@ -1,3 +1,18 @@
+@import url('../../service-transactions/customer/client.component.scss');
+
+.sub-title{
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    color: #d1d1e0;
+    background-color: rgb(60, 60, 93);
+    margin-top: 0.8rem;
+    padding-top: 5px;
+    padding-left: 1.3rem;
+    height: 35px;
+}
+
+/*
 mat-card {
     max-width: 80%;
     margin: 1rem auto;
@@ -38,15 +53,5 @@ mat-card {
     padding: 0.3rem;
 }
 
-.sub-title{
-    font-size: 20px;
-    font-weight: 400;
-    text-align: left;
-    color: #d1d1e0;
-    background-color: rgb(60, 60, 93);
-    padding-top: 3px;
-    padding-left: 1.3rem;
-    height: 40px;
-}
-
+*/
 

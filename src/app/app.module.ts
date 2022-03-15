@@ -8,6 +8,7 @@ import { DefaultModule } from './layout/default/default.module';
 import { LoginViewModule } from './layout/auth-views/login-view/login-view.module';
 import { RegisterViewModule } from './layout/auth-views/register-view/register-view.module';
 import { CustomerviewModule } from './layout/customerview/customerview.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 //import { ServiceTransactionsViewsModule } from './layout/service-transactions-views/service-transactions-views.module';
 //import { EvaluationModule } from './layout/evaluation-views/evaluation.module';
 
@@ -25,7 +26,9 @@ import { CustomerviewModule } from './layout/customerview/customerview.module';
     RegisterViewModule,
     CustomerviewModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

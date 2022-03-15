@@ -14,6 +14,10 @@ export class ClientService {
 
   public findCustomer(id: number): Observable<Client> {
     return this.httpClient.get<Client>(this.customerURL + `customer/find/${id}`);
+  }
+
+  public findCustomerInfo(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.customerURL + `customer/findinfo/${id}`);
   } 
 
   public listAll(): Observable<Client[]> {

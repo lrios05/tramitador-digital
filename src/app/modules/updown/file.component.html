@@ -1,43 +1,103 @@
 <div class="container" style="margin-top: 20px;">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4>Upload and Download Files</h4>
-        </div><br>
-        <div class="panel-body">
-            <strong>Select files from your computer</strong>
-            <div *ngIf="fileStatus.status==='progress'">
-                <div class="progress">
-                    <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info"
-                        role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                        {{ fileStatus.requestType }} {{ fileStatus.percent }}
-                    </div>
+    <mat-card>
+        <mat-card-header>
+            Envío de documentos
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="uploadForm" (ngSubmit)="onRegister()" id="upForm">
+                <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Rol de destino</mat-label>
+                        <mat-select formControlName="toRoleId" (selectionChange)="toRoleEventHandler($event)"
+                            placeholder="Seleccionar rol">
+                            <mat-option *ngFor="let item of roles" [value]="item.role">
+                                {{ item.description }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="uploadForm.controls['toRoleId'].invalid">
+                            Seleccione rol de destino
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Usuario de destino</mat-label>
+                        <mat-select formControlName="toUserId" placeholder="Seleccionar usuario">
+                            <mat-option *ngFor="let user of roleUsers" [value]="user.userId">
+                                {{ user.userName }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="uploadForm.controls['toUserId'].invalid">
+                            Seleccione usuario de destino
+                        </mat-error>
+                    </mat-form-field>
                 </div>
-            </div>
-            <hr>
-
-            <form enctype="multipart/form-data">
-                <fieldset>
-                    <div class="form-group">
-                        <div>
-                            <input type="file" (change)="onUploadFiles($event)" name="files" multiple
-                                class="form-control" />
+                
+                <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="quart-width">
+                        <mat-label>Codigo Contrato</mat-label>
+                        <input matInput formControlName="contractCode" placeholder="Ingrese código de contrato" maxlength="10">
+                        <mat-error *ngIf="uploadForm.controls['contractCode'].invalid">
+                            Ingrese el código de contrato
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="three-quart-width">
+                        <mat-label>Referencia de solicitud</mat-label>
+                        <input matInput formControlName="subject" placeholder="Ingrese la referencia de la nota" #subject  maxlength="50">
+                        <mat-hint align="end">{{subject.value.length}} / 50</mat-hint>
+                        <mat-error *ngIf="uploadForm.controls['subject'].invalid">
+                            Ingrese la referencia de la nota
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="vertical-form-field">
+                    <input hidden=true matInput formControlName="userId">
+                </div>
+            </form>
+            <!-- Section to upload local files -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <strong>Adjuntar documentos del contrato</strong>
+                    <div *ngIf="fileStatus.status==='progress'">
+                        <div class="progress">
+                            <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info"
+                                role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                {{ fileStatus.requestType }} {{ fileStatus.percent }}
+                            </div>
                         </div>
                     </div>
-                </fieldset>
-            </form>
-
-            <br>
-
-            <div *ngIf="filenames.length > 0" class="js-upload-finished">
-                <h3>Processed files</h3>
-                <div *ngFor="let filename of filenames" class="list-group">
-                    <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
-                        {{ filename }}
-                        <a class="alert-success float-right">Download</a>
-                    </a><br>
+                    <hr>
+        
+                    <form enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="form-group">
+                                <div>
+                                    <input type="file" (change)="onUploadFiles($event)" name="files" multiple
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+        
+                    <br>
+        
+                    <div *ngIf="filenames.length > 0" class="js-upload-finished">
+                        <h3>Archivos adjuntados</h3>
+                        <div *ngFor="let filename of filenames" class="list-group">
+                            <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success"
+                                style="cursor: pointer;">
+                                {{ filename }}
+                                <a class="alert-success float-right">Descargar</a>
+                            </a><br>
+                        </div>
+                    </div>
+        
                 </div>
             </div>
-
-        </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="align-button">
+        <button type="submit" mat-raised-button color="primary" form="upForm" [disabled]="uploadForm.invalid">
+            Subir documentos
+        </button>
     </div>
+
 </div>

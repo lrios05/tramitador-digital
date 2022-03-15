@@ -38,6 +38,8 @@ import { ReviewComponent } from './follow-ups/review/review.component';
 import { InstructionComponent } from './follow-ups/instruction/instruction.component';
 import { CheckoutComponent } from './follow-ups/checkout/checkout.component';
 import { RoleComponent } from './auth/role/role.component';
+import { ApisignatureComponent } from './signature/apisignature/apisignature.component';
+import { PdfviewerComponent } from './templates/pdf/pdfviewer.component';
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { RoleComponent } from './auth/role/role.component';
     ReviewComponent,
     InstructionComponent,
     CheckoutComponent,
-    RoleComponent
+    RoleComponent,
+    ApisignatureComponent,
+    PdfviewerComponent
   ], 
   imports: [
     CommonModule,

@@ -27,7 +27,6 @@ export class EvaluationComponent implements OnInit {
   @ViewChild(MatTable) tabla1: MatTable<IEvaluation> | undefined;
 
   customerBusiness: any;
-  //customerId: number = 0;
   customerName: string = '';
 
   constructor(private formBuilder: FormBuilder,

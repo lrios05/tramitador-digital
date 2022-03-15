@@ -17,6 +17,10 @@ export class ContractService {
     return this.httpClient.get<Contract>(this.contractURL + `find/${id}`);
   }
 
+  public findContractInfo(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.contractURL + `findinfo/${id}`);
+  }
+
   public findByCodeAndStatus(httpParams: HttpParams): Observable<any> {
     return this.httpClient.get<any>(`${this.contractURL}find/`,{params: httpParams});
   }

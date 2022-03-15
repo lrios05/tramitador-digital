@@ -1,5 +1,7 @@
-:host {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+@import url('../service-transactions/customer/client.component.scss');
+
+.align-button{
+  text-align: center;
+  margin-top: 1rem;
+}
+

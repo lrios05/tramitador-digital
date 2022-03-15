@@ -1,21 +1,39 @@
 mat-card {
-    max-width: 80%;
+    max-width: 75%;
     margin: .5em auto;
     text-align: center;
 }
 
+.mat-card-header{
+    font-size: 18px;
+    color: #d1d1e0;
+    background-color: rgb(60, 60, 93);
+    padding: 0.4rem;
+}
 .mid-width {
-    width: 45%;
+    width: 48%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.quart-width {
+    width: 24%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.three-quart-width {
+    width: 70%;
     padding-left: 15px;
     padding-right: 15px;
 }
 
 .full-width {
-    width: 95%;
+    width: 92%;
 }
 
 .row-divider {
     width: 50%; 
     padding-top: 10px; 
-    padding-bottom: 30px;
+    padding-bottom: 16px;
 }

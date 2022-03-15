@@ -72,11 +72,12 @@ export class ReviewComponent implements OnInit {
         this.loadDataTable(obj);
       });
     } else {
-      this.loadDataTable(this.noteDetails);
+      this.loadDataTable(this.noteDetails[0]);
     }
   }
 
   private loadDataTable(noteDetail: any){
+    console.log(noteDetail);
     this.dataTable.push({
       position: noteDetail['noteId'],
       date: new Date(),

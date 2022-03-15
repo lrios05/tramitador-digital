@@ -1,0 +1,75 @@
+<div class="container" style="margin-top: 20px;">
+    <mat-card>
+        <mat-card-header>
+            Firma de documentos
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="signatureForm" (ngSubmit)="onRegister()" id="signForm">
+                <div class="vertical-form-field">
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Codigo Contrato</mat-label>
+                        <input matInput formControlName="contractCode" placeholder="Ingrese código de contrato"
+                            maxlength="10">
+                        <mat-error *ngIf="signatureForm.controls['contractCode'].invalid">
+                            Ingrese el código de contrato
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" class="mid-width">
+                        <mat-label>Usuario de destino</mat-label>
+                        <input matInput formControlName="userName" placeholder="Usuario firmante" maxlength="30">
+                        <mat-error *ngIf="signatureForm.controls['userName'].invalid">
+                            Seleccione usuario firmante
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="vertical-form-field">
+                    <input hidden=true matInput formControlName="contractId">
+                </div>
+
+                <div class="vertical-form-field">
+                    <input hidden=true matInput formControlName="userId">
+                </div>
+            </form>
+
+            <div class="panel panel-default mt-3">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="btn btn-default p-0">
+                                <input type="file" (change)="selectFile($event)" class="form-control" />
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <button mat-raised-button color="primary" [disabled]="!selectedFiles" (click)="upload()">
+                                Firmar documento
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- <div *ngIf="currentFile" class="progress my-3">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{ width: progress + '%' }">
+                {{ progress }}%
+            </div>
+        </div>
+
+        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+
+        <div class="card mt-3">
+            <div class="card-header">List of Files</div>
+            <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
+                <li class="list-group-item">
+                    <a href="{{ file.url }}">{{ file.name }}</a>
+                </li>
+            </ul>
+        </div> -->
+
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>

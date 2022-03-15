@@ -43,10 +43,11 @@ export class CompanyComponent implements OnInit {
     'name': ['', [Validators.required, Validators.pattern(/[A-Za-z \-\_]+/)]],
     'groupId': ['', [Validators.required]],
     'activityId': ['', [Validators.required]],
-    'mobile': ['591-', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+    'mobile': ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     'phone': ['', [Validators.pattern(/^[0-9]+$/)]],
     'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-    'address': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]]
+    'address': ['', [Validators.required, Validators.pattern(/[A-Za-z0-9 \-\_]+/)]],
+    'confirmation': [false, Validators.requiredTrue]
   });
 
 

@@ -27,6 +27,10 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
   formSubmitted: boolean = false;
   allFormsValid: boolean = false;
   dataLoading: boolean = false;
+  checkConfirm: boolean = false;
+  clientFormValid: boolean = false;
+  companyFormValid: boolean = false;
+  contractFormValid: boolean = false;
 
   @ViewChild(ClientComponent) client!: ClientComponent;
   @ViewChild(CompanyComponent) company!: CompanyComponent;
@@ -41,6 +45,15 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
 
   ngAfterViewInit() {
     this.manageClientSubscription();
+    this.clientFormValid = this.client.clientForm.valid;
+    this.companyFormValid = this.company.companyForm.valid;
+    this.contractFormValid = this.contract.contractForm.valid;
+  }
+
+  ngAfterViewChecked() {
+    this.clientFormValid = this.client.clientForm.valid;
+    this.companyFormValid = this.company.companyForm.valid;
+    this.contractFormValid = this.contract.contractForm.valid;
   }
 
   ngOnDestroy() {
@@ -90,22 +103,40 @@ export class ServiceTransactionsComponent implements OnInit, AfterViewInit, OnDe
 
     if (previousIndex == CLIENT_INDEX) {
       // TODO populate client object
+      //let validForm: boolean = this.client.clientForm.valid;
+      if (!this.clientFormValid) {
+        this.changeIcon(previousIndex);
+        this.allFormsValid = false;
+      } else {
+        this.clearIconError(previousIndex);
+        //this.client.onRegister();
+        this.allFormsValid = true;
+      }
 
-      //let validForm: boolean = (this.client.clientInfoGroup.valid);
-      let validForm: boolean = true;
+    } else if (previousIndex == COMPANY_INDEX) {
+      //let validForm: boolean = this.company.companyForm.valid;
 
-      if (!validForm) {
+      if (!this.companyFormValid) {
         this.changeIcon(previousIndex);
         this.allFormsValid = false;
       } else {
         this.clearIconError(previousIndex);
         this.allFormsValid = true;
+        this.company.onRegister();
       }
-
-    } else if (previousIndex == COMPANY_INDEX) {
-      // TODO populate Company object
     } else if (previousIndex == CONTRACT_INDEX) {
-      // TODO populate Contract object
+      let validForm: boolean = this.contract.contractForm.valid;
+
+      if (!this.contractFormValid) {
+        this.changeIcon(previousIndex);
+        this.allFormsValid = false;
+        console.log('Contrat not validated');
+      } else {
+        this.clearIconError(previousIndex);
+        this.allFormsValid = true;
+        this.contract.onRegister();
+        console.log('Validated Contract');
+      }
     } else if (previousIndex == DOCUMENT_INDEX) {
       // TODO Populate with document
     }

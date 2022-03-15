@@ -43,7 +43,7 @@
                 <li>
                     <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
                         <img src="../../../../assets/images/user_avatar.jpg" alt="" class="user-image mr-1 p-2">
-                        Lindomar Rios
+                        {{ userAuthenticated }}
                         <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
@@ -52,7 +52,7 @@
                             Ver perfil
                         </button>
                         <mat-divider></mat-divider>
-                        <button mat-menu-item>
+                        <button mat-menu-item routerLink="/login" (click)="handleLogout()">
                             <mat-icon>exit_to_app</mat-icon>
                             Cerrar sesión
                         </button>

@@ -1,33 +1,6 @@
-mat-card {
-    max-width: 80%;
-    margin: .5em auto;
-    text-align: center;
-}
+@import url('../customer/client.component.scss');
 
-.mid-width {
-    width: 45%;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.quart-width {
-    width: 22%;
-    padding-left: 10px;
+.mat-checkbox{
+    padding-left: 20px;
     padding-right: 10px;
-}
-
-.three-quart-width {
-    width: 70%;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.full-width {
-    width: 100%;
-}
-
-.row-divider {
-    width: 50%; 
-    padding-top: 10px; 
-    padding-bottom: 30px;
 }

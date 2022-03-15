@@ -19,6 +19,10 @@ export class CompanyService {
   public findBusiness(id: number): Observable<Business> {
     return this.httpClient.get<Business>(this.businessURL + `find/${id}`);
   }
+
+  public findBusinessInfo(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.businessURL + `findinfo/${id}`);
+  }
 /*
   public findByCustomerId(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.businessURL}findcustomer/${id}`);

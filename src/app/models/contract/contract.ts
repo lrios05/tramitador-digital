@@ -13,8 +13,7 @@ export class Contract {
     private volume: number;
     private unitId: number;
     private days: string;
-    private obs?: string;
-
+  
     constructor(initDate: Date,
                 endDate: Date,
                 serviceId: number,
@@ -28,7 +27,7 @@ export class Contract {
                 volume: number,
                 unitId: number,
                 days: string,
-                obs: string) {
+    ) {
     
         this.initDate = initDate;
         this.endDate = endDate;
@@ -43,7 +42,6 @@ export class Contract {
         this.volume = volume;
         this.unitId = unitId;
         this.days = days;
-        this.obs = obs;
     }
 
 

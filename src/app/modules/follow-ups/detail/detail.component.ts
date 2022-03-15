@@ -35,7 +35,6 @@ export class DetailComponent implements OnInit {
   userTo?: string;
   roleTo?: string;
   instruction?: string;
-  fakeId: number = 0;
   
   priorities: SelectOption[] = Priority;
   tableColumns: string[] = ['position', 'fromUser', 'toUser', 'date', 'instruction', 'delete'];

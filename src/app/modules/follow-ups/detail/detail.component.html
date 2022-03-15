@@ -46,7 +46,8 @@
                     <mat-form-field appearance="standard" class="mid-width">
                         <mat-label>Comentario</mat-label>
                         <input matInput formControlName="comment" placeholder="Ingrese comentario del instructivo"
-                            maxlength="100">
+                            #comment maxlength="50">
+                            <mat-hint align="end">{{comment.value.length}} / 50</mat-hint>
                         <mat-error *ngIf="detailForm.controls['comment'].invalid">
                             Ingrese comentario para aclarar la instrucción
                         </mat-error>
@@ -78,8 +79,8 @@
                     </mat-form-field>
                 </div>
                 <mat-card-actions>
-                    <button type="button" mat-stroked-button color="primary"
-                        (click)="addInstruction()">Insertar</button>
+                    <button type="button" mat-stroked-button color="primary" form="forwardForm" [disabled]="detailForm.invalid"
+                        (click)="addInstruction()">Añadir instrucción</button>
                 </mat-card-actions>
             </form>
             <!-- Detail Section to forwarding instrutions -->
@@ -116,7 +117,8 @@
                             <th mat-header-cell *matHeaderCellDef> Quitar? </th>
                             <td mat-cell *matCellDef="let j = index;">
                                 <button mat-icon-button color="warn" focusable="false" (click)="deleteInstruction(j)">
-                                    <mat-icon>delete</mat-icon>
+                                    <mat-icon matTooltip="Quitar instrucción" matTooltipPosition="right"
+                                    aria-label="Link para quitar instrucción de la lista">delete</mat-icon>
                                 </button>
                             </td>
                         </ng-container>
@@ -132,7 +134,7 @@
 
     <div class="align-button">
         <button type="submit" mat-raised-button color="primary" form="forwardForm" [disabled]="detailForm.invalid">
-            Reenviar nota
+            Reenviar trámite
         </button>
     </div>
 </div>

@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
-import { ClientService } from '../../service-transactions/customer/client.service';
 import { CompanyService } from '../../service-transactions/company/company.service';
 import { Observation } from 'src/app/core/interfaces/observation';
 import { ObservationComponent } from '../observation/observation.component';
 import { FileService } from '../../updown/file.service';
+import { ImageHandlerService } from '../../../services/image-handler.service';
 
 
 @Component({
@@ -18,15 +18,20 @@ import { FileService } from '../../updown/file.service';
 })
 export class DataReviewComponent implements OnInit {
 
-  customerDetails: any;
+  customerDetails: any = {};
   clientId: any;
   contractAttache: any;
   documents: any = [];
+  showModal: boolean = false;
+
+  imageResponse: any;
+  imageData: any;
+  base64Data: any;
 
   displayedColumns: string[] = ['position', 'observation', 'delete'];
 
   datos: Observation[] = [
-    new Observation('Adjuntar documentos contrato firmado')
+    new Observation('')
   ];
 
   dataSource = new MatTableDataSource<Observation>(this.datos);
@@ -34,9 +39,9 @@ export class DataReviewComponent implements OnInit {
   @ViewChild(MatTable) tabla1: MatTable<Observation> | undefined;
 
   constructor(private activeRoute: ActivatedRoute,
-              private clientService: ClientService, 
               private companyService: CompanyService,
               private fileService: FileService,
+              private imageService: ImageHandlerService,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -46,7 +51,7 @@ export class DataReviewComponent implements OnInit {
         this.getCustomerData(this.clientId);
       }
     );
-    this.getDocuments('2-2021');
+    this.getDocuments('4-2021');
   }
 
   private getCustomerData(clientId: number) {
@@ -54,7 +59,6 @@ export class DataReviewComponent implements OnInit {
       data => {
         let res = data;
         this.customerDetails = res.payload;
-        console.log(this.customerDetails);
       }
     );
   }
@@ -64,12 +68,31 @@ export class DataReviewComponent implements OnInit {
       (data: any) => {
         this.contractAttache = data.payload;
         this.documents = data.payload.documentDtoList;
+        console.log(this.documents);
       }
     );
   }
 
   showDocument(docName: string): void{
     console.log(docName);
+    this.imageService.getImageByName(docName).subscribe(
+      (data: any) => {
+        //this.imageResponse = data;
+        this.base64Data = data;
+        console.log(this.base64Data);
+        this.imageData = 'data:image/jpeg;base64,' + this.base64Data;
+      }
+    );
+
+    this.show(docName);
+  }
+
+  show(docName: any){
+    this.showModal = true;
+  }
+
+  hide(){
+    this.showModal = false;
   }
 
   openDialog(){

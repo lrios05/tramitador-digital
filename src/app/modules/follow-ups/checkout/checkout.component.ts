@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 import { NoteService } from '../note/note.service';
 import { DetailService } from '../detail/detail.service';
 import { FileService } from '../../updown/file.service';
+import { ImageHandlerService } from '../../../services/image-handler.service';
 
 @Component({
   selector: 'app-checkout',
@@ -19,11 +21,16 @@ export class CheckoutComponent implements OnInit {
   noteDetails: any = [];
   contractAttache: any;
   documents: any = [];
+  showModal?: boolean;
+  contractCode?: string;
+  imageData: any;
+  base64Data: any;
 
   constructor(private activeRoute: ActivatedRoute, 
               private noteService: NoteService,
               private detailService: DetailService,
-              private fileService: FileService) { }
+              private fileService: FileService,
+              private imageService: ImageHandlerService) { }
 
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe(
@@ -49,9 +56,8 @@ export class CheckoutComponent implements OnInit {
     this.noteService.findByNoteId(noteId).subscribe(
       (data: any) => {
         this.noteHeader = data.payload;
-        let contractCode = data.payload.contractPartDto.contractCode;
-        console.log(this.noteHeader);
-        this.getDocuments(contractCode);
+        this.contractCode = data.payload.contractPartDto.contractCode;
+        this.getDocuments(this.contractCode!);
       }
     );
     this.getNoteDetails(noteId);
@@ -76,6 +82,35 @@ export class CheckoutComponent implements OnInit {
   }
 
   showDocument(docName: any){
-    alert(docName);
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('code', this.contractCode!);
+    httpParams = httpParams.set('filename', docName);
+
+    this.showModal = true;
+
+    this.imageService.getImageByContract(httpParams).subscribe(
+      (data: any) => {
+        this.imageData = data;
+      }, (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  show(docName: any){
+    this.showModal = true;
+ 
+    this.imageService.getImageByName(docName).subscribe(
+      (data: any) => {
+        this.imageData = data;
+      }, (error: any) => {
+        console.log(error);
+      }
+    );
+
+  }
+
+  hide(){
+    this.showModal = false;
   }
 }

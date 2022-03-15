@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UploadDetail } from 'src/app/models/uploads/upload-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class FileService {
 
   public findByContractCode(code: string): Observable<any> {
     return this.http.get<any>(`${this.uploadURL}/file/findbycontract/${code}`);
+  }
+
+  public createAttacheDocuments(uploadDetail: UploadDetail): Observable<any> {
+    return this.http.post<any>(`${this.uploadURL}/file/create`, uploadDetail);
   }
 }

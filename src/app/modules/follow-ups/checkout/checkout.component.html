@@ -31,9 +31,9 @@
                     <td><span>Documentos adjuntos: </span></td>
                     <td colspan="3">
                         <mat-nav-list fxLayout="row">
-                            <mat-list-item *ngFor="let doc of documents">
-                                <a matLine href="#">{{ doc.docName }}</a>
-                                <button mat-icon-button (click)="showDocument(doc.docName)">
+                            <mat-list-item *ngFor="let doc of documents" style="width: 25%; height: 25px;">
+                                <a matLine (click)="showDocument(doc.docName)">{{ doc.docName }}</a>
+                                <button mat-icon-button (click)="show(doc.docName)">
                                     <mat-icon>info</mat-icon>
                                 </button>
                             </mat-list-item>
@@ -52,18 +52,37 @@
                     <th>Firmas</th>
                 </tr>
                 <tr *ngFor="let detail of noteDetails">
-                    <td>{{ detail.fromUserDto.userName }} <br>Encargado de contratos</td>
-                    <td>{{ detail.toUserDto.userName }} <br>Jefe de servicio</td>
+                    <td>{{ detail.fromUserDto.userName }} <br>{{detail.fromUserDto.role}} </td>
+                    <td>{{ detail.toUserDto.userName }} <br>{{detail.toUserDto.role}} </td>
                     <td>{{ detail.sendDate }} </td>
-                    <td>{{ detail.instruction }} ( {{ detail.comment }})</td>
+                    <td>{{ detail.instruction }}<br> ( {{ detail.comment }})</td>
                     <td>{{ detail.fromUserDto.userName }} <br>{{ detail.sendDate }}</td>
                 </tr>
             </table>
         </div>
     </div>
     <div class="align-button">
-        <a [routerLink]="['/home']"><button mat-raised-button color="primary" *ngIf="isPreview">Descargar PDF</button></a>
-        <a [routerLink]="['/forward', noteHeader.noteId ]"><button mat-raised-button color="primary" *ngIf="!isPreview">Reenviar nota</button></a>
+        <a [routerLink]="['/home']"><button mat-raised-button color="primary" *ngIf="isPreview">Descargar
+                PDF</button></a>
+        <a [routerLink]="['/forward', noteHeader.noteId ]"><button mat-raised-button color="primary"
+                *ngIf="!isPreview">Reenviar nota</button></a>
         <a [routerLink]="['/home']"><button mat-raised-button *ngIf="!isPreview">Finalizar trámite</button></a>
+    </div>
+
+    <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Vista previa</h4>
+                </div>
+                <div class="modal-body">
+                    <img [src]="imageData" id="imagepreview" style="width: 425px; height: 425px;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hide()">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

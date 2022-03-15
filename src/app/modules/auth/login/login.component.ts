@@ -71,6 +71,13 @@ export class LoginComponent implements OnInit {
       }
     );
 
+    this.authService.findUser(this.loginForm.get('email')?.value).subscribe(
+      data => {
+        let dataUser: any = data;
+        this.tokenService.setUserFullName(dataUser.payload.fullName);
+      }
+    );
+
   }
 
   validateForm() {
